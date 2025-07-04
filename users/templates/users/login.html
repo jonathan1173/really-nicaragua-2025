@@ -1,2 +1,8 @@
-<h1>register</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>login</h1>
 <a href="{% url 'social:begin' 'google-oauth2' %}">Iniciar sesión con Google</a>
+
+{% endblock %}
