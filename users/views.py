@@ -1,7 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import UserForm
 
 def page_register(request):
-    return render(request, 'users/register.html')
-
-def page_login(request):
-    return render(request, 'users/login.html')
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('page-login')
+    else:
+        form = UserForm()
+    
+    return render(request, 'users/register.html', {'form': form})

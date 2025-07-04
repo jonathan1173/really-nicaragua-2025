@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
     'users',
     'page',
 ]
@@ -120,3 +121,16 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # la sesión expira al cerrar el navegad
 # Opcional, para seguridad extra:
 SESSION_SAVE_EVERY_REQUEST = True  # extiende la sesión 30 días cada vez que el usuario hace una petición
 
+AUTH_USER_MODEL = 'users.CustomUser'
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
+
+LOGIN_REDIRECT_URL = ''
+LOGOUT_REDIRECT_URL = ''
