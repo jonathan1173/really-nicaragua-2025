@@ -124,7 +124,7 @@ SESSION_SAVE_EVERY_REQUEST = True  # extiende la sesión 30 días cada vez que e
 AUTH_USER_MODEL = 'users.CustomUser'
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.google.GoogleOAth2',
+    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
