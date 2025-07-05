@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.views.decorators.cache import never_cache
+from django.contrib.auth.decorators import login_required
+# from django.utils.decorators import method_decorator
 from .forms import UserForm
+from django.contrib.auth import logout
 
+@never_cache
 def page_register(request):
     if request.user.is_authenticated:
         return redirect('/home')
@@ -13,7 +18,6 @@ def page_register(request):
             user = form.save()
             user.backend = 'django.contrib.auth.backends.ModelBackend'
             login(request, user)
-            messages.success(request, "Registro exitoso. Has iniciado sesión.")
             return redirect('/home')
         else:
             messages.error(request, "Por favor corrige los errores.")
@@ -22,7 +26,7 @@ def page_register(request):
 
     return render(request, 'users/register.html', {'form': form})
 
-
+@never_cache
 def page_login(request):
     if request.user.is_authenticated:
         return redirect('/home')
@@ -33,9 +37,17 @@ def page_login(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
-            messages.success(request, "Inicio de sesión exitoso.")
             return redirect('/home')
         else:
             messages.error(request, "Credenciales inválidas")
 
     return render(request, 'users/login.html')
+
+
+def logout_view(request):
+    logout(request)
+    response = redirect('users-login')
+
+    response.delete_cookie('some_cookie_name')
+
+    return response
