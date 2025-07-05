@@ -3,7 +3,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.views.decorators.cache import never_cache
 from django.contrib.auth.decorators import login_required
-# from django.utils.decorators import method_decorator
 from .forms import UserForm
 from django.contrib.auth import logout
 
