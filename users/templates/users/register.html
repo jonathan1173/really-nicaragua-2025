@@ -1,12 +1,16 @@
-{% extends 'base.html' %} 
-
+{% extends 'base.html' %}
 {% block content %}
-<!-- register.html -->
-<h1>register</h1>
+<h1>Registro</h1>
+
+{% if messages %}
+  {% for message in messages %}
+    <p style="color: red;">{{ message }}</p>
+  {% endfor %}
+{% endif %}
+
 <form action="{% url 'users-register' %}" method="post">
-  {% csrf_token %} 
+  {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Registrarse</button>
 </form>
-
 {% endblock %}

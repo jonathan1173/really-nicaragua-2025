@@ -1,9 +1,8 @@
-# users/forms.py
 from django import forms
 from .models import CustomUser
 
 class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
+    password = forms.CharField(widget=forms.PasswordInput, label="Contraseña")
 
     class Meta:
         model = CustomUser
@@ -15,6 +14,12 @@ class UserForm(forms.ModelForm):
             raise forms.ValidationError("Este nombre de usuario ya existe")
         return username
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if CustomUser.objects.filter(email=email).exists():
+            raise forms.ValidationError("Este correo ya está en uso")
+        return email
+
     def clean(self):
         cleaned_data = super().clean()
         self.instance.clean()
@@ -22,9 +27,7 @@ class UserForm(forms.ModelForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.set_password(self.cleaned_data['password'])  # encripta la contraseña
+        user.set_password(self.cleaned_data['password'])
         if commit:
             user.save()
         return user
-    
-    
