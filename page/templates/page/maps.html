@@ -1,0 +1,14 @@
+{% extends 'rally_nicaragua/base.html' %}{% load static %}
+{% block scripts %}
+<script src="{% static 'page/mapdata.js' %}" defer></script>
+<script src="{% static 'page/countrymap.js' %}" defer></script>
+{% endblock %}
+{% block content %}
+
+{% include 'rally_nicaragua/components/logout.html' %}
+
+<div style="width: 500px; height: 80vh; margin-top: 30px; background-color: gray">
+    <div id="map"></div>
+</div>
+
+{% endblock %}

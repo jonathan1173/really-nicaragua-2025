@@ -9,3 +9,8 @@ def page_index(request):
 @never_cache
 def page_home(request):
     return render(request, 'page/home.html')
+
+@login_required(login_url='users-login')
+@never_cache
+def page_maps(request):
+    return render(request, 'page/maps.html')

@@ -1,20 +1,14 @@
 {% extends 'rally_nicaragua/base.html' %}{% load static %}
-{% block scripts %}
-<script src="{% static 'page/mapdata.js' %}" defer></script>
-<script src="{% static 'page/countrymap.js' %}" defer></script>
-{% endblock %}
+
 {% block content %}
 
+{% include 'rally_nicaragua/components/logout.html' %}
+
 <h1>home</h1>
-
+<br>
 <h2>nivel academico</h2>
-
-<div style="width: 500px; height: 80vh; margin-top: 30px; background-color: gray">
-  <div id="map"></div>
-</div>
-
 <div>
-  <p><a href="">nivel inicial</a></p>
+  <p><a href="{% url 'home-maps' %}">nivel inicial</a></p>
   <p><a href="">primaria</a></p>
   <p><a href="">secundaria</a></p>
 </div>
