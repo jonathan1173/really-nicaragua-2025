@@ -9,6 +9,11 @@
 </head>
 <body>
 
+    <nav>
+        <a href="{% url 'users-register' %}">registro</a>
+        <a href="{% url 'users-login' %}">inicio</a>
+    </nav>
+
     <h1>bienvenido</h1>
 
     {% block content %}
