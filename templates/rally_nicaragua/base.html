@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Link</title>
-    {% block styles %}{% endblock %}
-    {% block scripts %}{% endblock %}
-</head>
-<body>
-
+    {% block styles %}{% endblock %} {% block scripts %}{% endblock %}
+  </head>
+  <body>
     <nav>
-        <a href="{% url 'users-register' %}">registro</a>
-        <a href="{% url 'users-login' %}">inicio</a>
-        <a href="{% url 'users-logout' %}">Cerrar sesión</a>
+      {% if  request.user.is_authenticated  %}
+      <a href="{% url 'users-logout' %}">Cerrar sesión</a>
+      
+      {% else %}
 
+      <a href="{% url 'users-register' %}">registro</a>
+      <a href="{% url 'users-login' %}">inicio</a>
+      {% endif %}
     </nav>
 
-    {% block content %}
-    {% endblock %}
-    
-</body>
+    {% block content %} {% endblock %}
+  </body>
 </html>
