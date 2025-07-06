@@ -1,0 +1,23 @@
+{% extends 'rally_nicaragua/base.html' %}
+{% block content %}
+
+<h2>La información de municipios se está construyendo</h2>
+
+{% if department %}
+  <h2>Departamento: {{ department.name }}</h2>
+
+  {% if municipalities %}
+    <ul>
+      {% for muni in municipalities %}
+        <li>{{ muni.name }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No hay municipios disponibles para este departamento.</p>
+  {% endif %}
+
+{% else %}
+  <p>No se encontró el departamento solicitado.</p>
+{% endif %}
+
+{% endblock %}

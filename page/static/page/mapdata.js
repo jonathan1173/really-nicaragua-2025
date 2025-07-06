@@ -75,11 +75,10 @@ var simplemaps_countrymap_mapdata={
   },
   state_specific: {
     NIAN: {
-      name: "Atlántico Norte",
-      url: "http://127.0.0.1:8000/"
+      name: "Atlántico-Norte",
     },
     NIAS: {
-      name: "Atlántico Sur"
+      name: "Atlántico-Sur"
     },
     NIBO: {
       name: "Boaco"
@@ -112,7 +111,8 @@ var simplemaps_countrymap_mapdata={
       name: "Managua"
     },
     NIMS: {
-      name: "Masaya"
+      name: "Masaya",
+      url: ""
     },
     NIMT: {
       name: "Matagalpa"
@@ -201,5 +201,7 @@ var simplemaps_countrymap_mapdata={
   legend: {
     entries: []
   },
-  regions: {}
+  regions: {},
+  
 };
+
