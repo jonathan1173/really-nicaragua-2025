@@ -5,9 +5,9 @@ const waitForMap = setInterval(() => {
       const estado = simplemaps_countrymap_mapdata.state_specific[id];
       if (estado && estado.name) {
         
-        
+
         console.log("redirigiendo");
-        const targetUrl = `http://127.0.0.1:8000/home/maps/${estado.name.toLowerCase()}`;
+        const targetUrl = `http://127.0.0.1:8000/home/maps/${estado.name}`;
         console.log(targetUrl);
         window.location.href = targetUrl;
 

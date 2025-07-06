@@ -118,13 +118,13 @@ var simplemaps_countrymap_mapdata={
       name: "Matagalpa"
     },
     NINS: {
-      name: "Nueva Segovia"
+      name: "Nueva-Segovia"
     },
     NIRI: {
       name: "Rivas"
     },
     NISJ: {
-      name: "Rio San Juan"
+      name: "Rio-San-Juan"
     }
   },
   locations: {},
