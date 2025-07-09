@@ -152,4 +152,5 @@ STATICFILES_DIRS = [
 ]
 
 
-CSRF_TRUSTED_ORIGINS = ["http://*", "really-nicaragua-2025-production.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["http://*", "https://really-nicaragua-2025-production.up.railway.app"]
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
