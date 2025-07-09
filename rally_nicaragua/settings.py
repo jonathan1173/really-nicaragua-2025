@@ -152,4 +152,4 @@ STATICFILES_DIRS = [
 ]
 
 
-CSRF_TRUSTED_ORIGINS = ["http://*"]
+CSRF_TRUSTED_ORIGINS = ["http://*", "really-nicaragua-2025-production.up.railway.app"]
