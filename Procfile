@@ -1,1 +1,1 @@
-web: gunicorn rally_nicaragua.wsgi 
+web: python manage.py collectstatic && gunicorn rally_nicaragua.wsgi 
