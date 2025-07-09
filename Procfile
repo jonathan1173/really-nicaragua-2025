@@ -1,0 +1,1 @@
+web: gunicorn rally_nicaragua.wsgi 
