@@ -1,6 +1,18 @@
+{% extends 'rally_nicaragua/base.html' %}
+
+{% block content %}
+
+<div style="background-color: gray;">
+
+    {% load breadcrumbs %}
+    {% render_breadcrumb %}
+
+</div>
+
 <h2>{{ municipality.name }}</h2>
 <ul>
-  <li><a href="{% url 'municipality-content' municipality.name 'historia' %}">Historia</a></li>
-  <li><a href="{% url 'municipality-content' municipality.name 'gastronomia' %}">Gastronomía</a></li>
-  <li><a href="{% url 'municipality-content' municipality.name 'turismo' %}">Turismo</a></li>
+    <li><a href="{% url 'municipality-content' municipality.name 'historia' %}">Historia</a></li>
+    <li><a href="{% url 'municipality-content' municipality.name 'gastronomia' %}">Gastronomía</a></li>
+    <li><a href="{% url 'municipality-content' municipality.name 'turismo' %}">Turismo</a></li>
 </ul>
+{% endblock %}

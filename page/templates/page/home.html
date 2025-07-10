@@ -2,13 +2,18 @@
 
 {% block content %}
 
+<div style="background-color: gray;">
+
+  {% load breadcrumbs %}
+  {% render_breadcrumb %}
+
+</div>
+
 {% include 'rally_nicaragua/components/logout.html' %}
 
 <h1>home</h1>
-<br>
 <h2>nivel academico</h2>
 <div>
-  
   <p><a href="{% url 'home-maps' %}">nivel inicial</a></p>
   <p><a href="">primaria</a></p>
   <p><a href="">secundaria</a></p>

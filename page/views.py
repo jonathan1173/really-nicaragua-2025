@@ -37,8 +37,11 @@ def page_department(request, city):
 @never_cache
 def municipality_options(request, municipality_name):
     municipality = get_object_or_404(Municipality, name=municipality_name)
+    department = municipality.department  # obtenemos el departamento del municipio
+
     return render(request, "page/municipality_options.html", {
         "municipality": municipality,
+        "department": department,
     })
 
 # muestra contenido de categoría
@@ -47,8 +50,12 @@ def municipality_options(request, municipality_name):
 def municipality_content(request, municipality_name, category):
     municipality = get_object_or_404(Municipality, name=municipality_name)
     content = MunicipalityContent.objects.filter(municipality=municipality, category=category).first()
+    department = municipality.department  # obtenemos el departamento del municipio
+
     return render(request, "page/municipality_content.html", {
         "municipality": municipality,
         "category": category,
         "content": content,
+        "department": department,
+
     })

@@ -1,7 +1,20 @@
+{% extends 'rally_nicaragua/base.html' %}
+
+{% block content %}
+
+<div style="background-color: gray;">
+
+    {% load breadcrumbs %}
+    {% render_breadcrumb %}
+
+</div>
+
 <h2>{{ municipality.name }} - {{ category|title }}</h2>
 
 {% if content %}
-  <div>{{ content.content|safe }}</div>
+<div>{{ content.content|safe }}</div>
 {% else %}
-  <p>No hay contenido disponible para esta categoría.</p>
+<p>No hay contenido disponible para esta categoría.</p>
 {% endif %}
+
+{% endblock %}
