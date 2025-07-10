@@ -7,7 +7,8 @@ const waitForMap = setInterval(() => {
         
 
         console.log("redirigiendo");
-        const targetUrl = `http://127.0.0.1:8000/home/maps/${estado.name}`;
+        const baseUrl = window.location.origin;
+        const targetUrl = `${baseUrl}/home/maps/${estado.name}`;
         console.log(targetUrl);
         window.location.href = targetUrl;
 
