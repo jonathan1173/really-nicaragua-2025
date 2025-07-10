@@ -8,7 +8,7 @@ def render_breadcrumb(context):
     request = context['request']
     path = request.path
     breadcrumb = []    
-    breadcrumb.append({'name': 'Inicio', 'url': '/home'})
+    breadcrumb.append({'name': 'Home', 'url': '/home'})
     
     if path.startswith('/home/maps'):
         breadcrumb.append({'name': 'Maps', 'url': reverse('home-maps')})
