@@ -3,7 +3,10 @@ import dj_database_url  # útil para parsear DATABASE_URL (opcional)
 from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()
+if os.getenv("RAILWAY_ENVIRONMENT") != "production":
+    from dotenv import load_dotenv
+    load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -142,16 +145,16 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('CLIENT_ID')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('CLIENT_SECRET')
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
+LOGIN_URL = 'users-login'
+LOGOUT_URL = 'users-login'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
-LOGIN_REDIRECT_URL = ''
-LOGOUT_REDIRECT_URL = ''
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-import os
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # donde collectstatic recopilará todo
 
@@ -162,3 +165,4 @@ STATICFILES_DIRS = [
 
 CSRF_TRUSTED_ORIGINS = ["http://*", "https://really-nicaragua-2025-production.up.railway.app"]
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
