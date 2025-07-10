@@ -1,0 +1,6 @@
+<h2>{{ municipality.name }}</h2>
+<ul>
+  <li><a href="{% url 'municipality-content' municipality.name 'historia' %}">Historia</a></li>
+  <li><a href="{% url 'municipality-content' municipality.name 'gastronomia' %}">Gastronomía</a></li>
+  <li><a href="{% url 'municipality-content' municipality.name 'turismo' %}">Turismo</a></li>
+</ul>

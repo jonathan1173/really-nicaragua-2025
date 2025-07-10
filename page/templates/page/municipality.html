@@ -9,7 +9,7 @@
   {% if municipalities %}
     <ul>
       {% for muni in municipalities %}
-        <li>{{ muni.name }}</li>
+        <a href="{% url 'municipality-options' municipality_name=muni.name %}"><li>{{ muni.name }}</li></a>
       {% endfor %}
     </ul>
   {% else %}
