@@ -1,0 +1,35 @@
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-primario-2);
+    height: 10svh;
+    color: white;
+    padding-inline: 5px;
+}
+
+.navbar__title>a {
+    color: #fff;
+}
+
+.navbar__content {
+    gap: 5px;
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.navbar__link {
+    text-transform: lowercase;
+    color: white;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    padding: 5px;
+}
+
+.navbar__link-stuffed {
+    background-color: #fff;
+    color: var(--color-primario-2);
+
+}
