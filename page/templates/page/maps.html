@@ -3,7 +3,7 @@
 <script src="{% static 'page/js/mapdata.js' %}" defer></script>
 <script src="{% static 'page/js/countrymap.js' %}" defer></script>
 <script src="{% static 'page/js/readmap.js' %}" defer></script>
-
+<link rel="stylesheet" href="{% static 'page/css/maps.css' %}">
 {% endblock %}
 {% block content %}
 
@@ -15,7 +15,7 @@
 </div>
 
 
-<div style="width: 500px; height: 80vh; margin-top: 30px; background-color: gray">
+<div class="map">
     <div id="map"></div>
 </div>
 

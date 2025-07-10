@@ -4,7 +4,7 @@ var simplemaps_countrymap_mapdata={
     width: "responsive", //'700' or 'responsive'
     background_color: "#FFFFFF",
     background_transparent: "yes",
-    border_color: "#ffffff",
+    border_color: "#000",
     
     //State defaults
     state_description: "",
