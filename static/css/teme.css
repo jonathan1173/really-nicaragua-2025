@@ -1,3 +1,4 @@
+/* Reset básico */
 * {
   padding: 0px;
   margin: 0px;
@@ -5,17 +6,39 @@
   text-decoration: none;
 }
 
+/* Tipografías */
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Montserrat&display=swap');
+
+/* Variables globales */
 :root {
-  --color-primario-1: #058240;
-  --color-primario-2: #87C159;
-  --color-primario-3: #ADCACB;
+  /* Colores principales */
+  --color-primario-1: #4296CD;
 
-  --color-secundario-1: #6B99C3;
-  --color-secundario-2: #FEE3A2;
-  --color-secundario-3: #F3C301;
+  /* Acentos secundarios */
+  --color-secundario-1: #2589C9;
+  --color-secundario-2: #063E5F;
+  --color-secundario-3: #1E2C3B;
+  --color-secundario-4: #e5f6ff;
+  --color-secundario-5: #F4FBFF;
 
-  --color-fondo-1: #D2D2D4;
-  --color-fondo-2: #E4E5EA;
+  /* Colores de texto */
+  --color-texto-1: #2E3C4E; /* Encabezado */
+  --color-texto-2: #384653; /* Cuerpo */
 
-  --color-texto-1: #0C151C;
+  /* Tipografías */
+  --font-heading: 'Barlow', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+
+  /* colores basicos  */
+  --basico-1:#000000;
+  --basico-2:#FFFFFF;
+}
+
+/* Aplicación de tipografías */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+body {
+  font-family: var(--font-body);
 }

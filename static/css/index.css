@@ -1,6 +1,103 @@
-.title{
-    background-color: var(--color-secundario);
-    height: 90svh;
-    width: 100%;
-    text-align: center;
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 90vh;
+    background-color: var(--basico-2);
+
 }
+
+.hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .5rem;
+    padding-left: 2rem;
+
+}
+
+.hero__title {
+    /* font-size: clamp(minimo, preferido, maximo); */
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    color: var(--color-texto-1);
+}
+
+.hero__text {
+    font-size: clamp(.9rem, 2.5vw, 1.4rem);
+    color: var(--color-texto-2);
+}
+
+.hero__button {
+    border: 2px solid var(--color-secundario-1);
+    padding: .5rem;
+    border-radius: 8px;
+    color: var(--basico-1);
+}
+
+.hero__button--start {
+    background: linear-gradient(45deg,
+            var(--color-secundario-1) 0%,
+            var(--color-primario-1) 10%,
+            var(--basico-2) 120%);
+}
+
+.hero__visual {
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes rotatar {
+
+    0%,
+    100% {
+        transform:  rotate(0deg);
+        border-radius: 60% 40% 70% 30% / 40% 60% 30% 70%;
+        background-color: red;
+    }
+
+    25% {
+        transform:rotate(10deg);
+        border-radius: 45% 55% 60% 40% / 55% 45% 40% 60%;
+        background-color: orange;
+    }
+
+    50% {
+        transform: rotate(20deg);
+        border-radius: 30% 70% 40% 60% / 70% 30% 60% 40%;
+        background-color: blue;
+    }
+
+    75% {
+        transform: rotate(10deg);
+        border-radius: 45% 55% 60% 40% / 55% 45% 40% 60%;
+        background-color: orange;
+    }
+}
+
+.hero__circle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--color-secundario-2);
+
+    top: -10rem;
+    right: -10rem;
+    animation: rotatar 3s infinite linear;
+}
+
+
+/* === Breakpoint: tablet (<768px) === */
+@media screen and (max-width: 767px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .hero__circle {
+        display: none;
+    }
+
+}
+
+/* === Breakpoint: desktop (≥1024px) ===
+@media screen and (min-width: 1024px) { ... } 
+*/
