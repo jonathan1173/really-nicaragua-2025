@@ -3,7 +3,7 @@ from django.urls import reverse
 
 register = template.Library()
 
-@register.inclusion_tag('rally_nicaragua/components/breadcrumb.html', takes_context=True)
+@register.inclusion_tag('components/breadcrumb.html', takes_context=True)
 def render_breadcrumb(context):
     request = context['request']
     path = request.path

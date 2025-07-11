@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 
 # renderiza la pagina de inicio
 def page_index(request):
-    return render(request, 'rally_nicaragua/index/index.html')
+    return render(request, 'rally_nicaragua/index.html')
 
 # renderiza la pagina home 
 @login_required(login_url='users-login')
