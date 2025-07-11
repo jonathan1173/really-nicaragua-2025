@@ -1,13 +1,10 @@
 {% extends 'rally_nicaragua/base.html' %}
+{% load breadcrumbs %}
 
 {% block content %}
 
-<div style="background-color: gray;">
-
-    {% load breadcrumbs %}
-    {% render_breadcrumb %}
-
-</div>
+<!-- barra de direcciones -->
+{% render_breadcrumb %}
 
 <h2>{{ municipality.name }} - {{ category|title }}</h2>
 

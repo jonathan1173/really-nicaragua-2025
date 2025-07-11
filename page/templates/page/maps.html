@@ -1,4 +1,6 @@
 {% extends 'rally_nicaragua/base.html' %}{% load static %}
+{% load breadcrumbs %}
+
 {% block scripts %}
 <script src="{% static 'page/js/mapdata.js' %}" defer></script>
 <script src="{% static 'page/js/countrymap.js' %}" defer></script>
@@ -7,13 +9,8 @@
 {% endblock %}
 {% block content %}
 
-<div style="background-color: gray;">
-
-    {% load breadcrumbs %}
-    {% render_breadcrumb %}
-
-</div>
-
+<!-- barra de direcciones -->
+{% render_breadcrumb %}
 
 <div class="map">
     <div id="map"></div>
