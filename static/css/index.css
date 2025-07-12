@@ -35,10 +35,8 @@
 }
 
 .hero__button--start {
-    background: linear-gradient(45deg,
-            var(--color-secundario-1) 0%,
-            var(--color-primario-1) 10%,
-            var(--basico-2) 120%);
+    color: var(--basico-2);
+    background-color: var(--color-primario-1);
 }
 
 .hero__visual {

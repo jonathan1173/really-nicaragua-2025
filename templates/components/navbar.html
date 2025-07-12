@@ -1,13 +1,15 @@
 <div class="navbar">
-    <h2 class="navbar__title"><a href="{% url 'page-home' %}">Nicaragua</a></h2>
+    <h2 class="navbar__title">
+        <a class="navbar__title-link" href="{% url 'page-home' %}">Nicaragua</a>
+    </h2>
 
     <div class="navbar__content">
         {% if user.is_authenticated %}
-        <a class="navbar__link navbar__link-stuffed" href="">Perfil</a>
-        <a class="navbar__link " href="{% url 'users-logout' %}">Cerrar sesión</a>
+            <a class="navbar__link navbar__link--stuffed" href="">Perfil</a>
+            <a class="navbar__link" href="{% url 'users-logout' %}">Cerrar sesión</a>
         {% else %}
-        <a class="navbar__link" href="{% url 'users-register' %}">Registrarse</a>
-        <a class="navbar__link navbar__link-stuffed" href="{% url 'users-login' %}">Iniciar sesión</a>
+            <a class="navbar__link" href="{% url 'users-register' %}">Registrarse</a>
+            <a class="navbar__link navbar__link--stuffed" href="{% url 'users-login' %}">Iniciar sesión</a>
         {% endif %}
     </div>
 </div>

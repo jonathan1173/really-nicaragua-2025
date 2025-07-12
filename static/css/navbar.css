@@ -1,0 +1,72 @@
+/* Navbar Styling */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Título a la izquierda, enlaces a la derecha */
+  align-items: center;
+  height: 10vh;
+  background-color: var(--color-primario-1);
+  padding: 0 2rem; /* Espaciado horizontal para el contenido */
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+}
+
+.navbar__title-link {
+  color: var(--basico-2);
+  font-size: 1.8rem; /* Tamaño de fuente ligeramente mayor para el título */
+  font-weight: bold;
+}
+
+.navbar__content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Espacio entre los enlaces */
+  /* Se eliminó min-width y background-color: black; */
+}
+
+.navbar__link {
+  color: var(--basico-2);
+  padding: 0.5rem 0.8rem; /* Relleno para hacer los enlaces más clicables */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Transición suave para hover/focus */
+  border-radius: 0.25rem; /* Bordes ligeramente redondeados */
+}
+
+.navbar__link:hover,
+.navbar__link:focus {
+  color: var(--color-secundario-4); /* Color más claro al pasar el ratón/enfocar */
+  outline: none; /* Elimina el contorno de enfoque predeterminado */
+}
+
+.navbar__link--stuffed {
+  background-color: var(--color-secundario-2); /* Color de fondo distintivo para el botón */
+  color: var(--basico-2); /* Asegura que el texto sea blanco */
+  padding: 0.75rem 1.25rem; /* Más relleno para apariencia de botón */
+  border-radius: 0.5rem; /* Más redondeado para el botón */
+  font-weight: bold;
+}
+
+.navbar__link--stuffed:hover,
+.navbar__link--stuffed:focus {
+  background-color: var(--color-secundario-1); /* Fondo ligeramente más claro al pasar el ratón/enfocar */
+  color: var(--basico-2); /* Mantiene el texto blanco */
+}
+
+/* Ajustes responsivos para pantallas pequeñas */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Apila los elementos verticalmente */
+    height: auto; /* Ajusta la altura automáticamente */
+    padding: 1rem 1rem; /* Ajusta el relleno para pantallas pequeñas */
+    gap: 1rem; /* Espacio entre el título y el contenido apilados */
+  }
+
+  .navbar__content {
+    flex-direction: column; /* Apila los enlaces verticalmente */
+    width: 100%; /* Ocupa todo el ancho */
+    gap: 0.5rem; /* Menor espacio entre enlaces apilados */
+  }
+
+  .navbar__link,
+  .navbar__link--stuffed {
+    width: 100%; /* Hace que los enlaces ocupen todo el ancho cuando están apilados */
+    text-align: center; /* Centra el texto en los enlaces apilados */
+  }
+}
