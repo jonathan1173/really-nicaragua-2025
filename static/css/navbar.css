@@ -1,72 +1,143 @@
-/* Navbar Styling */
+/* Navbar */
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  position: absolute;
+  
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+}
+
 .navbar {
   display: flex;
-  justify-content: space-between; /* Título a la izquierda, enlaces a la derecha */
+  justify-content: space-between;
   align-items: center;
-  height: 10vh;
-  background-color: var(--color-primario-1);
-  padding: 0 2rem; /* Espaciado horizontal para el contenido */
-  flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+  width: calc(100% - 2rem);
+  max-width: 1280px;
+  background-color: var(--color-secundario-1); /* --color-primario-1 con opacidad */
+  backdrop-filter: blur(8px);
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  flex-wrap: wrap;
 }
 
 .navbar__title-link {
   color: var(--basico-2);
-  font-size: 1.8rem; /* Tamaño de fuente ligeramente mayor para el título */
+  font-size: 1.8rem;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .navbar__content {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* Espacio entre los enlaces */
-  /* Se eliminó min-width y background-color: black; */
+  gap: 1.5rem;
 }
 
-.navbar__link {
+.navbar__link,
+.navbar__link--stuffed {
   color: var(--basico-2);
-  padding: 0.5rem 0.8rem; /* Relleno para hacer los enlaces más clicables */
-  transition: color 0.3s ease, background-color 0.3s ease; /* Transición suave para hover/focus */
-  border-radius: 0.25rem; /* Bordes ligeramente redondeados */
+  text-decoration: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.25rem;
+  transition: 0.3s;
 }
 
 .navbar__link:hover,
 .navbar__link:focus {
-  color: var(--color-secundario-4); /* Color más claro al pasar el ratón/enfocar */
-  outline: none; /* Elimina el contorno de enfoque predeterminado */
+  color: var(--color-secundario-4); /* azul claro */
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .navbar__link--stuffed {
-  background-color: var(--color-secundario-2); /* Color de fondo distintivo para el botón */
-  color: var(--basico-2); /* Asegura que el texto sea blanco */
-  padding: 0.75rem 1.25rem; /* Más relleno para apariencia de botón */
-  border-radius: 0.5rem; /* Más redondeado para el botón */
+  background-color: var(--color-secundario-2); /* azul oscuro */
   font-weight: bold;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
 }
 
-.navbar__link--stuffed:hover,
-.navbar__link--stuffed:focus {
-  background-color: var(--color-secundario-1); /* Fondo ligeramente más claro al pasar el ratón/enfocar */
-  color: var(--basico-2); /* Mantiene el texto blanco */
+.navbar__link--stuffed:hover {
+  opacity: 0.9;
 }
 
-/* Ajustes responsivos para pantallas pequeñas */
+/* Botón hamburguesa */
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 30;
+}
+
+.hamburger__line {
+  height: 3px;
+  background-color: var(--basico-2);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
+  .header {
+    padding: 0.5rem;
+  }
+
   .navbar {
-    flex-direction: column; /* Apila los elementos verticalmente */
-    height: auto; /* Ajusta la altura automáticamente */
-    padding: 1rem 1rem; /* Ajusta el relleno para pantallas pequeñas */
-    gap: 1rem; /* Espacio entre el título y el contenido apilados */
+    flex-direction: row;
+    padding: 1rem;
+    width: calc(100% - 1rem);
+  }
+
+  .navbar__hamburger {
+    display: flex;
   }
 
   .navbar__content {
-    flex-direction: column; /* Apila los enlaces verticalmente */
-    width: 100%; /* Ocupa todo el ancho */
-    gap: 0.5rem; /* Menor espacio entre enlaces apilados */
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 85%;
+    left: 0;
+    background-color: var(--color-secundario-1); /* --color-primario-1 más opaco */
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    border-radius: 0 0 10px 10px;
+    transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s ease-out;
+  }
+
+  .navbar__content.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .navbar__hamburger.is-open .hamburger__line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .navbar__hamburger.is-open .hamburger__line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .navbar__hamburger.is-open .hamburger__line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
   }
 
   .navbar__link,
   .navbar__link--stuffed {
-    width: 100%; /* Hace que los enlaces ocupen todo el ancho cuando están apilados */
-    text-align: center; /* Centra el texto en los enlaces apilados */
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1.25rem;
   }
 }
