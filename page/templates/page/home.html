@@ -2,19 +2,34 @@
 {% load breadcrumbs %}
 {% load static %}
 
+{% block styles %}
+<link rel="stylesheet" href="{% static 'page/css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
+{% endblock %}
+
 {% block content %}
 
 <!-- barra de direcciones -->
 {% render_breadcrumb %}
 
+<section class="content">
+  <div class="content__container">
 
+    <div class="content__header">
+      <h1 class="content__title">home</h1>
+    </div>
 
-<h1>home</h1>
-<h2>nivel academico</h2>
-<div>
-  <p><a href="{% url 'home-maps' %}">nivel inicial</a></p>
-  <p><a href="">primaria</a></p>
-  <p><a href="">secundaria</a></p>
-</div>
+    <div class="content__body">
+      <h2 class="content__subtitle">nivel académico</h2>
+
+      <div class="content__links">
+        <p class="content__link"><a href="{% url 'home-maps' %}" class="content__anchor">nivel inicial</a></p>
+        <p class="content__link"><a href="#" class="content__anchor">primaria</a></p>
+        <p class="content__link"><a href="#" class="content__anchor">secundaria</a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 {% endblock %}

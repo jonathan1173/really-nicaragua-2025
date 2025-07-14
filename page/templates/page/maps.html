@@ -1,5 +1,10 @@
 {% extends 'rally_nicaragua/base.html' %}{% load static %}
 {% load breadcrumbs %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
+{% endblock %}
 
 {% block scripts %}
 <script src="{% static 'page/js/mapdata.js' %}" defer></script>
