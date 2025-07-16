@@ -1,14 +1,17 @@
-<nav class="breadcrumb">
-  <div class="breadcrumb__content">
+<div class="flex justify-center items-center p-4  w-full z-20">
+
+  <div
+    class="flex justify-start items-center w-full max-w-7xl bg-blue-600 backdrop-blur-sm py-4 px-8 rounded-lg flex-wrap gap-1">
     {% for item in breadcrumb %}
-      {% if item.url %}
-        <a href="{{ item.url }}" class="breadcrumb__link">{{ item.name }}</a>
-        {% if not forloop.last %}
-          <span class="breadcrumb__separator">&gt;</span>
-        {% endif %}
-      {% else %}
-        <span class="breadcrumb__current">{{ item.name }}</span>
-      {% endif %}
+    {% if item.url %}
+    <a href="{{ item.url }}" class="text-white font-bold text-lg">{{ item.name }}</a>
+    {% if not forloop.last %}
+    <span class="text-white font-bold text-lg">&gt;</span>
+    {% endif %}
+    {% else %}
+    <span class="text-white font-bold text-lg">{{ item.name }}</span>
+    {% endif %}
     {% endfor %}
   </div>
-</nav>
+
+</div>
