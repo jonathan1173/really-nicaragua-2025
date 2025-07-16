@@ -3,22 +3,19 @@
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
+<!-- Asegúrate de que tu CSS de Tailwind esté enlazado aquí o configurado en tu proyecto Django -->
 {% endblock %}
 
 {% block content %}
-
-<section class="hero">
-  <section class="hero__content">
-
-    <h1 class="hero__title">Bienvenido a Nicaragua</h1>
-    <p class="hero__text">Descubre el país de lagos y volcanes.</p>
-    <div class="hero__actions">
-      <button class="hero__button hero__button--start">Comenzar</button>
-      <button class="hero__button hero__button--demo">Ver demo</button>
+<section class="relative min-h-[90vh] bg-white overflow-hidden flex items-center pl-[10%]">
+  <section class="flex-1 flex flex-col justify-center gap-2 pl-[10%] z-10">
+    <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-900">Bienvenido a Nicaragua</h1>
+    <p class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700">Descubre el país de lagos y volcanes.</p>
+    <div class="flex gap-4 mt-4">
+      <button class="border-2 border-blue-500 p-2 rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-colors">Comenzar</button>
+      <button class="border-2 border-blue-500 p-2 rounded-lg text-gray-900 bg-white hover:bg-gray-100 transition-colors">Ver demo</button>
     </div>
-
   </section>
-  <div class="hero__circle"></div>
+  <div class="absolute w-[400px] h-[400px] md:w-[40vw] md:h-[40vw] lg:w-[600px] lg:h-[600px] rounded-full bg-purple-200 top-[-50px] right-[-100px] z-0 animate-spin blob-animation"></div>
 </section>
-
 {% endblock %}
