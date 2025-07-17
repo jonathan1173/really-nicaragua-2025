@@ -1,25 +1,29 @@
-{% extends 'rally_nicaragua/base.html' %}{% load static %}
-{% load breadcrumbs %}
-{% load static %}
+{% extends 'rally_nicaragua/base.html' %}
+{% load breadcrumbs %}{% load static %}
 
 {% block styles %}
-<link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
+<!-- Asegúrate de que tu CSS de Tailwind esté enlazado aquí y compilado correctamente -->
 {% endblock %}
 
 {% block scripts %}
+{# Es crucial que los scripts de SimpleMaps se carguen *después* de que el elemento #map esté disponible en el DOM. #}
+{# Si tu 'base.html' coloca este bloque al final del <body> (justo antes de </body>), esta es la ubicación ideal. #}
 <script src="{% static 'page/js/mapdata.js' %}" defer></script>
-<script src="{% static 'page/js/countrymap.js' %}" defer></script>
 <script src="{% static 'page/js/readmap.js' %}" defer></script>
-<link rel="stylesheet" href="{% static 'page/css/maps.css' %}">
+<script src="{% static 'page/js/countrymap.js' %}" defer></script>
 {% endblock %}
-{% block content %}
 
+{% block content %}
 <!-- barra de direcciones -->
 {% render_breadcrumb %}
 
-<div class="map">
-    <div id="map"></div>
+<!-- Contenedor del mapa: ancho completo en móviles, 40% en pantallas medianas/grandes -->
+<div class="flex justify-center items-center min-h-screen py-8 px-4">
+  <div class="w-full md:w-[40%]  p-5 bg-white shadow-xl rounded-lg border border-gray-100 flex items-center justify-center flex-shrink-0">
+    <div id="map" class="w-full h-full">
+      <!-- El mapa de SimpleMaps se renderizará aquí -->
+       
+    </div>
+  </div>
 </div>
-
-
 {% endblock %}

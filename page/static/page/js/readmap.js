@@ -1,3 +1,9 @@
+window.addEventListener('load', function () {
+  if (typeof simplemaps_countrymap !== 'undefined') {
+    simplemaps_countrymap.load();
+  }
+});
+
 const waitForMap = setInterval(() => {
   if (typeof simplemaps_countrymap !== "undefined" && simplemaps_countrymap.hooks) {
     clearInterval(waitForMap);
