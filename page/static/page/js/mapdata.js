@@ -33,16 +33,16 @@ var simplemaps_countrymap_mapdata = {
     //Label defaults
     label_color: "#ffffff",
     label_hover_color: "#ffffff",
-    label_size: 16,
+    label_size: 25,
     label_font: "Arial",
-    label_display: "auto",
+    label_display: "all",
     label_scale: "yes",
     hide_labels: "no",
     hide_eastern_labels: "no",
 
     //Zoom settings
-    zoom: "yes",
-    manual_zoom: "yes",
+    zoom: "no",
+    manual_zoom: "no",
     back_image: "no",
     initial_back: "no",
     initial_zoom: "-1",
