@@ -6,7 +6,7 @@
     {% if item.url %}
     <a href="{{ item.url }}" class="text-white font-bold text-lg">{{ item.name }}</a>
     {% if not forloop.last %}
-    <span class="text-white font-bold text-lg">&gt;</span>
+    <span class="text-white font-bold text-lg">/</span>
     {% endif %}
     {% else %}
     <span class="text-white font-bold text-lg">{{ item.name }}</span>
