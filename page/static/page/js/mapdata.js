@@ -2,7 +2,7 @@ var simplemaps_countrymap_mapdata = {
   main_settings: {
     //General settings
     width: "responsive", //'700' or 'responsive'
-    background_color: "#87CEEB", // Celeste cielo (SkyBlue)
+    background_color: "#1d334a", // Celeste cielo (SkyBlue)
     background_transparent: "no",
     border_color: "#000",
 
@@ -124,20 +124,20 @@ var simplemaps_countrymap_mapdata = {
     },
     NIMS: {
       name: "Masaya",
-      color: "#FFD54F", // amarillo cálido suave
+      color: "#FFA500", // amarillo cálido suave
       url: ""
     },
     NIMT: {
       name: "Matagalpa",
-      color: "#FFD54F" // amarillo cálido suave
+      color: "#FFA500" // amarillo cálido suave
     },
     NINS: {
       name: "Nueva-Segovia",
-      color: "#FFD54F" // amarillo cálido suave
+      color: "#FFA500" // amarillo cálido suave
     },
     NIRI: {
       name: "Rivas",
-      color: "#FFD54F" // amarillo cálido suave
+      color: "#FFA500" // amarillo cálido suave
     },
     NISJ: {
       name: "Rio-San-Juan",
