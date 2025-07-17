@@ -4,6 +4,7 @@ window.addEventListener('load', function () {
   }
 });
 
+
 const waitForMap = setInterval(() => {
   if (typeof simplemaps_countrymap !== "undefined" && simplemaps_countrymap.hooks) {
     clearInterval(waitForMap);
