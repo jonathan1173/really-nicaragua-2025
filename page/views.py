@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 from django.contrib.auth.decorators import login_required
-from .models import Department, Municipality, MunicipalityContent
+from .models import Department, Municipality, Content
 from django.shortcuts import get_object_or_404
 
 # renderiza la pagina de inicio
@@ -49,7 +49,7 @@ def municipality_options(request, municipality_name):
 @never_cache
 def municipality_content(request, municipality_name, category):
     municipality = get_object_or_404(Municipality, name=municipality_name)
-    content = MunicipalityContent.objects.filter(municipality=municipality, category=category).first()
+    content = Content.objects.filter(municipality=municipality, category=category).first()
     department = municipality.department  # obtenemos el departamento del municipio
 
     return render(request, "page/municipality_content.html", {
