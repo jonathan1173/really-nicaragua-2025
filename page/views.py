@@ -3,6 +3,8 @@ from django.views.decorators.cache import never_cache
 from django.contrib.auth.decorators import login_required
 from .models import Department, Municipality, Content, Category
 from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 
 # renderiza la pagina de inicio
 def page_index(request):
@@ -32,32 +34,32 @@ def page_department(request, city):
         "municipalities": municipalities,
     })
 
-# selección de categoría
+
 @login_required(login_url='user-login')
 @never_cache
-def municipality_options(request, municipality_name):
+def municipality_options_and_content(request, municipality_name):
     municipality = get_object_or_404(Municipality, name=municipality_name)
     department = municipality.department
-    categories = Category.objects.all()  
+    categories = Category.objects.all()
 
+    category_name = request.GET.get('category')  
+    content_html = ''
+    selected_category = None
+
+    if category_name:
+        selected_category = get_object_or_404(Category, name=category_name)
+        content = Content.objects.filter(municipality=municipality, category=selected_category).first()
+
+        return JsonResponse({
+            "category": selected_category.name,
+            "municipality": municipality.name,
+            "content": content.content if content else None
+        })
+
+
+    # Si no hay categoría, solo devuelve la página base con las categorías
     return render(request, "page/municipality_options.html", {
         "municipality": municipality,
         "department": department,
-        "categories": categories,  
+        "categories": categories,
     })
-
-# muestra contenido del departamento segun la categoria
-@login_required(login_url='user-login')
-@never_cache
-def municipality_content(request, municipality_name, category):
-    municipality = get_object_or_404(Municipality, name=municipality_name)
-    category_obj = get_object_or_404(Category, name=category)
-    content = Content.objects.filter(municipality=municipality, category=category_obj).first()
-    department = municipality.department  
-    return render(request, "page/municipality_content.html", {
-        "municipality": municipality,
-        "category": category_obj,
-        "content": content,
-        "department": department,
-    })
-
