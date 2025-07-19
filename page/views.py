@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 from django.contrib.auth.decorators import login_required
-from .models import Department, Municipality, Content
+from .models import Department, Municipality, Content, Category
 from django.shortcuts import get_object_or_404
 
 # renderiza la pagina de inicio
@@ -37,25 +37,27 @@ def page_department(request, city):
 @never_cache
 def municipality_options(request, municipality_name):
     municipality = get_object_or_404(Municipality, name=municipality_name)
-    department = municipality.department  # obtenemos el departamento del municipio
+    department = municipality.department
+    categories = Category.objects.all()  
 
     return render(request, "page/municipality_options.html", {
         "municipality": municipality,
         "department": department,
+        "categories": categories,  
     })
 
-# muestra contenido de categoría
+# muestra contenido del departamento segun la categoria
 @login_required(login_url='user-login')
 @never_cache
 def municipality_content(request, municipality_name, category):
     municipality = get_object_or_404(Municipality, name=municipality_name)
-    content = Content.objects.filter(municipality=municipality, category=category).first()
-    department = municipality.department  # obtenemos el departamento del municipio
-
+    category_obj = get_object_or_404(Category, name=category)
+    content = Content.objects.filter(municipality=municipality, category=category_obj).first()
+    department = municipality.department  
     return render(request, "page/municipality_content.html", {
         "municipality": municipality,
-        "category": category,
+        "category": category_obj,
         "content": content,
         "department": department,
-
     })
+

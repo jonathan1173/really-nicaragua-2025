@@ -30,7 +30,7 @@ def render_breadcrumb(context):
         })
 
     if 'category' in context:
-        breadcrumb.append({'name': context['category'].title(), 'url': None})
+        breadcrumb.append({'name': context['category'].name, 'url': None})
 
     return {'breadcrumb': breadcrumb}
 

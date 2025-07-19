@@ -13,25 +13,32 @@
 {% render_breadcrumb %}
 
 
-<h2>La información de municipios se está construyendo</h2>
 
-{% if department %}
-<h2>Departamento: {{ department.name }}</h2>
+<div class="container mx-auto px-4 py-8 max-w-3xl">
+  {% if department %}
+  <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Departamento: {{ department.name }}</h2>
 
-{% if municipalities %}
-<ul>
-  {% for muni in municipalities %}
-  <a href="{% url 'municipality-options' municipality_name=muni.name %}">
-    <li>{{ muni.name }}</li>
-  </a>
-  {% endfor %}
-</ul>
-{% else %}
-<p>No hay municipios disponibles para este departamento.</p>
-{% endif %}
-
-{% else %}
-<p>No se encontró el departamento solicitado.</p>
-{% endif %}
+  {% if department.description != None %}
+  <p class="text-lg text-gray-700 leading-relaxed mb-6">{{ department.description }}</p>
+  {% endif %}
+  {% if municipalities %}
+  <h3 class="text-2xl font-semibold text-gray-800 mb-4">Municipios:</h3>
+  <ul class="space-y-2 list-disc pl-6">
+    {% for muni in municipalities %}
+    <li>
+      <a href="{% url 'municipality-options' municipality_name=muni.name %}"
+        class="text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-200">
+        {{ muni.name }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="text-gray-600 italic">No hay municipios disponibles para este departamento.</p>
+  {% endif %}
+  {% else %}
+  <p class="text-gray-600 italic">No se encontró el departamento solicitado.</p>
+  {% endif %}
+</div>
 
 {% endblock %}
