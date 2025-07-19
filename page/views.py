@@ -29,7 +29,7 @@ def page_department(request, city):
     department = Department.objects.filter(name=city).first()
     municipalities = department.municipalities.all() if department else None
 
-    return render(request, "page/municipality.html", {
+    return render(request, "page/department.html", {
         "department": department,
         "municipalities": municipalities,
     })
@@ -58,7 +58,7 @@ def municipality_options_and_content(request, municipality_name):
 
 
     # Si no hay categoría, solo devuelve la página base con las categorías
-    return render(request, "page/municipality_options.html", {
+    return render(request, "page/municipality.html", {
         "municipality": municipality,
         "department": department,
         "categories": categories,

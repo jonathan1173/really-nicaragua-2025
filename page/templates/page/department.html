@@ -1,0 +1,44 @@
+{% extends 'rally_nicaragua/base.html' %}
+{% load breadcrumbs %}
+{% load static %}
+
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- barra de direcciones -->
+{% render_breadcrumb %}
+
+
+
+<div class="container mx-auto px-4 py-8 max-w-3xl">
+  {% if department %}
+  <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Departamento: {{ department.name }}</h2>
+
+  {% if department.description != None %}
+  <p class="text-lg text-gray-700 leading-relaxed mb-6">{{ department.description }}</p>
+  {% endif %}
+  {% if municipalities %}
+  <h3 class="text-2xl font-semibold text-gray-800 mb-4">Municipios:</h3>
+  <ul class="space-y-2 list-disc pl-6">
+    {% for muni in municipalities %}
+    <li>
+      <a href="{% url 'municipality-options' municipality_name=muni.name %}"
+        class="text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-200">
+        {{ muni.name }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="text-gray-600 italic">No hay municipios disponibles para este departamento.</p>
+  {% endif %}
+  {% else %}
+  <p class="text-gray-600 italic">No se encontró el departamento solicitado.</p>
+  {% endif %}
+</div>
+
+{% endblock %}
