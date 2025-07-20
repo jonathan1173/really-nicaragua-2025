@@ -1,7 +1,22 @@
 {% extends 'rally_nicaragua/base.html' %}
 {% block content %}
+<section class="flex items-center justify-center p-4">
 
-<div>
-    
-</div>
+    <div
+        class="flex flex-col items-center gap-6 p-8 w-full max-w-1/2 rounded-lg border-2 border-blue-500 bg-white/40 shadow-xl">
+
+        <h2 class="text-3xl font-semibold">Perfil</h2>
+
+        <div>
+            <p>Nombre: {{ user.full_name }}</p>
+            <p>Usuario: {{ user.username }}</p>
+            <p>Email: {{ user.email }}</p>
+
+            {% if user.profile_img %}
+            <img src="{{ user.profile_img }}" alt="Imagen de perfil">
+            {% endif %}
+
+        </div>
+    </div>
+</section>
 {% endblock %}

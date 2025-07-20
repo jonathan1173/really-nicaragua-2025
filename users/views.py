@@ -43,8 +43,11 @@ def page_login(request):
 
     return render(request, 'users/login.html')
 
+@login_required(login_url='/users/login')
+@never_cache
 def view_profile(request):
-    return render(request,'users/profile.html')
+    user = request.user
+    return render(request,'users/profile.html', {'user':user})
 
 
 def logout_view(request):
