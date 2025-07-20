@@ -3,7 +3,8 @@
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 
     <!-- LOGO Y NOMBRE DEL SITIO -->
-    <a href="{% if user.is_authenticated %}/home{%else%}/{% endif %}" class="flex items-center space-x-3 rtl:space-x-reverse">
+    <a href="{% if user.is_authenticated %}/home{%else%}/{% endif %}"
+      class="flex items-center space-x-3 rtl:space-x-reverse">
       <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Logo" />
       <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Rally Nicaragua</span>
     </a>
@@ -44,7 +45,8 @@
         aria-controls="navbar-menu" aria-expanded="false">
         <span class="sr-only">Abrir menú principal</span>
         <!-- Ícono hamburguesa -->
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 17 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 17 14" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
           <path d="M1 1h15M1 7h15M1 13h15" />
         </svg>
       </button>
@@ -75,7 +77,13 @@
 
         {% if user.is_authenticated %}
         <li>
-          <a href="#"
+          <a href="{% url 'home-maps' %}"
+            class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:text-blue-500">
+            Mapa
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'users-profile' %}"
             class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:text-blue-500">
             Perfil
           </a>
@@ -87,6 +95,13 @@
           </a>
         </li>
         {% else %}
+        <li>
+          <a href="{% url 'home-maps' %}"
+            class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:text-blue-500">
+            Mapa
+          </a>
+        </li>
+
         <li>
           <a href="{% url 'users-register' %}"
             class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:text-blue-500">

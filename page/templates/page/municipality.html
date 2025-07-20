@@ -19,7 +19,11 @@
         <div id="municipality-data" data-municipality="{{ municipality.name }}"></div>
         {{ municipality.name }}
     </h2>
-    {{ municipality.description }}
+    {% if municipality.description != None %}
+    <div>
+        {{ municipality.description }}
+    </div>
+    {% endif %}
 
     {% if categories %}
     <h3 class="text-2xl font-semibold text-gray-800 mb-4">Categorías:</h3>

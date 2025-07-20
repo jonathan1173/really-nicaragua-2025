@@ -42,6 +42,9 @@ def page_login(request):
 
     return render(request, 'users/login.html')
 
+def view_profile(request):
+    return render(request,'users/profile.html')
+
 
 def logout_view(request):
     logout(request)
