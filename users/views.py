@@ -19,6 +19,7 @@ def page_register(request):
             login(request, user)
             return redirect('/home')
         else:
+            print(form.errors)
             messages.error(request, "Por favor corrige los errores.")
     else:
         form = UserForm()

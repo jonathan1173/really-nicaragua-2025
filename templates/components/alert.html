@@ -1,10 +1,12 @@
-    <!-- MENSAJES DE ERROR -->
-    {% if messages %}
-    <ul class="list-none p-0 m-0 w-full text-center">
-      {% for message in messages %}
-      <li class="bg-red-100 text-red-700 border border-red-700 rounded-md py-3 px-4 mb-4 text-sm">
-        {{ message }}
-      </li>
+
+    {% if form.errors %}
+  <ul class="list-none p-0 m-0 w-full text-center">
+    {% for field, errors in form.errors.items %}
+      {% for error in errors %}
+        <li class="bg-red-100 text-red-700 border border-red-700 rounded-md py-3 px-3 mb-4 text-sm">
+          {{ error }}
+        </li>
       {% endfor %}
-    </ul>
-    {% endif %}
+    {% endfor %}
+  </ul>
+{% endif %}
