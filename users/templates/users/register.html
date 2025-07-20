@@ -8,7 +8,8 @@
 {% block content %}
 <section class="flex items-center justify-center p-4">
 
-  <div class="flex flex-col items-center gap-6 p-8 w-full max-w-md rounded-lg border-2 border-blue-500 bg-white/40 shadow-xl">
+  <div
+    class="flex flex-col items-center gap-6 p-8 w-full max-w-1/2 rounded-lg border-2 border-blue-500 bg-white/40 shadow-xl">
 
     <header class="text-center w-full">
       <h1 class="text-3xl font-semibold text-gray-800">Registro</h1>
@@ -18,6 +19,38 @@
 
     <form method="post" class="flex flex-col gap-4 w-full">
       {% csrf_token %}
+
+      <div class="flex  gap-4 w-full">
+        <div class="flex gap-4 w-full">
+          <!-- name -->
+          <div class="relative w-1/2">
+            <input type="text" name="name" id="name"
+              class="peer w-full h-12 px-4 bg-gray-50 text-gray-800 border border-gray-300 rounded-md placeholder-transparent focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+              placeholder=" " required>
+            <label for="name"
+              class="absolute top-[14px] left-[15px] bg-white px-1 text-sm text-gray-600 peer-focus:top-[-10px] peer-focus:left-[10px] peer-focus:text-xs peer-focus:text-blue-600 peer-not-placeholder-shown:top-[-10px] peer-not-placeholder-shown:left-[10px] peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-blue-600">
+              Nombre
+            </label>
+          </div>
+
+          <!-- last name -->
+          <div class="relative w-1/2">
+            <input type="text" name="last_name" id="last_name"
+              class="peer w-full h-12 px-4 bg-gray-50 text-gray-800 border border-gray-300 rounded-md placeholder-transparent focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+              placeholder=" " required>
+            <label for="last_name"
+              class="absolute top-[14px] left-[15px] bg-white px-1 text-sm text-gray-600 peer-focus:top-[-10px] peer-focus:left-[10px] peer-focus:text-xs peer-focus:text-blue-600 peer-not-placeholder-shown:top-[-10px] peer-not-placeholder-shown:left-[10px] peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-blue-600">
+              Apellido
+            </label>
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+
 
       <!-- Username -->
       <div class="relative">
@@ -59,7 +92,8 @@
     </form>
 
     <footer class="mt-4 text-center w-full text-sm">
-      <p>¿Ya tienes una cuenta? <a href="{% url 'users-login' %}" class="text-blue-600 hover:underline">Iniciar sesión</a></p>
+      <p>¿Ya tienes una cuenta? <a href="{% url 'users-login' %}" class="text-blue-600 hover:underline">Iniciar
+          sesión</a></p>
     </footer>
 
   </div>

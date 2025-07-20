@@ -6,7 +6,7 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'password']
+        fields = ['username', 'email', 'password', 'name', 'last_name']
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
@@ -22,7 +22,10 @@ class UserForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
-        self.instance.clean()
+        for field in self.Meta.fields:
+            value = cleaned_data.get(field)
+            if value in [None, '']:
+                self.add_error(field, f'El campo {field} no puede estar vacío.')
         return cleaned_data
 
     def save(self, commit=True):
