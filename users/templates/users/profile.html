@@ -8,9 +8,9 @@
         <h2 class="text-3xl font-semibold">Perfil</h2>
 
         <div>
-            <p>Nombre: {{ user.full_name }}</p>
-            <p>Usuario: {{ user.username }}</p>
-            <p>Email: {{ user.email }}</p>
+            <p><b>Nombre:</b> {{ user.name }} {{user.last_name}}</p>
+            <p><b>Username:</b> {{ user.username }}</p>
+            <p><b>Email:</b> {{ user.email }}</p>
 
             {% if user.profile_img %}
             <img src="{{ user.profile_img }}" alt="Imagen de perfil">
