@@ -1,13 +1,9 @@
 {% extends 'rally_nicaragua/base.html' %}
 {% load breadcrumbs %}{% load static %}
 
-{% block styles %}
-<!-- Asegúrate de que tu CSS de Tailwind esté enlazado aquí y compilado correctamente -->
-{% endblock %}
+
 
 {% block scripts %}
-{# Es crucial que los scripts de SimpleMaps se carguen *después* de que el elemento #map esté disponible en el DOM. #}
-{# Si tu 'base.html' coloca este bloque al final del <body> (justo antes de </body>), esta es la ubicación ideal. #}
 <script src="{% static 'page/js/mapdata.js' %}" defer></script>
 <script src="{% static 'page/js/readmap.js' %}" defer></script>
 <script src="{% static 'page/js/countrymap.js' %}" defer></script>

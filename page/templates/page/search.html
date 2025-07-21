@@ -8,12 +8,15 @@
 
         <h2 class="text-2xl font-medium border-b mb-5 ">Resultados de busqueda</h2>
 
+        <!-- busqueda de departamentos -->
         <div>
             <h3 class="text-xl font-medium">Departamento</h3>
 
             <ul class="list-disc list-inside space-y-1">
                 {% for dept in departament %}
-                <li>{{dept.name}}</li>
+                <li class="p-2">
+                    <a href="{% url 'maps-department' dept.name %}">{{dept.name}}</a>
+                </li>
                 {% empty %}
                 <li class="text-red-500">No se encontraron resultados</li>
                 {% endfor %}
@@ -21,11 +24,14 @@
 
         </div>
 
+        <!-- busqueda de municipios -->
         <div>
             <h3 class="text-xl font-medium">Municipio</h3>
             <ul class="list-disc list-inside space-y-1">
                 {% for muni in municipality %}
-                <li>{{muni.name}}</li>
+                <li>
+                    <a href="{% url 'municipality-options' muni.name %}">{{muni.name}}</a>
+                </li>
                 {% empty %}
                 <li class="text-red-500">No se encontraron resultados</li>
                 {% endfor %}

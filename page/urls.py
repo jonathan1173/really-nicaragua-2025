@@ -6,6 +6,6 @@ urlpatterns = [
     path('home/', page_home, name='page-home'),
     path('home/maps', page_maps, name="home-maps"),
     path('home/maps/<str:city>', page_department, name='maps-department'),
-    path('home/maps/<str:municipality_name>', municipality_options_and_content, name='municipality-options'),
+    path('home/maps/<str:municipality_name>/options', municipality_options_and_content, name='municipality-options'),
     path('home/search', view_search, name='page-search')
 ]
