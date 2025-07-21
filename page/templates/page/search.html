@@ -1,0 +1,40 @@
+{% extends 'rally_nicaragua/base.html' %}
+
+{% block content %}
+
+
+<section class="flex flex-col justify-center items-center min-h-screem px-4 py-8">
+    <div class="bg-white w-full max-w-3xl p-4 rounded-lg shadow-lg ">
+
+        <h2 class="text-2xl font-medium border-b mb-5 ">Resultados de busqueda</h2>
+
+        <div>
+            <h3 class="text-xl font-medium">Departamento</h3>
+
+            <ul class="list-disc list-inside space-y-1">
+                {% for dept in departament %}
+                <li>{{dept.name}}</li>
+                {% empty %}
+                <li class="text-red-500">No se encontraron resultados</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <div>
+            <h3 class="text-xl font-medium">Municipio</h3>
+            <ul class="list-disc list-inside space-y-1">
+                {% for muni in municipality %}
+                <li>{{muni.name}}</li>
+                {% empty %}
+                <li class="text-red-500">No se encontraron resultados</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

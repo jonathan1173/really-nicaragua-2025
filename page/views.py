@@ -30,7 +30,7 @@ def page_department(request, city):
         "municipalities": municipalities,
     })
 
-# muestra el municipio y su contenido en base a las categorias
+# muestra el municipio y tambien puede mostrar su contenido en base a las categorias
 def municipality_options_and_content(request, municipality_name):
     municipality = get_object_or_404(Municipality, name=municipality_name)
     department = municipality.department
@@ -51,9 +51,21 @@ def municipality_options_and_content(request, municipality_name):
         })
 
 
-    # Si no hay categoría, solo devuelve la página base con las categorías
     return render(request, "page/municipality.html", {
         "municipality": municipality,
         "department": department,
         "categories": categories,
+    })
+
+
+# barra de busqueda 
+def view_search(request):
+    
+    query = request.GET.get('search','').strip()
+    department = Department.objects.filter(name__icontains=query)
+    municipality = Municipality.objects.filter(name__icontains=query)
+    
+    return render(request, 'page/search.html',{
+        'departament':department,
+        'municipality':municipality,
     })
