@@ -14,11 +14,11 @@
 
             <ul class="list-disc list-inside space-y-1">
                 {% for dept in departament %}
-                <li class="p-2">
+                <li class="p-2 hover:bg-gray-100 hover:text-blue-400 transition duration-200 ease-in-out">
                     <a href="{% url 'maps-department' dept.name %}">{{dept.name}}</a>
                 </li>
                 {% empty %}
-                <li class="text-red-500">No se encontraron resultados</li>
+                <li class="p-2 text-red-500">No se encontraron resultados</li>
                 {% endfor %}
             </ul>
 
@@ -29,11 +29,11 @@
             <h3 class="text-xl font-medium">Municipio</h3>
             <ul class="list-disc list-inside space-y-1">
                 {% for muni in municipality %}
-                <li>
+                <li class="p-2  hover:bg-gray-100 hover:text-blue-400 transition duration-200 ease-in-out">
                     <a href="{% url 'municipality-options' muni.name %}">{{muni.name}}</a>
                 </li>
                 {% empty %}
-                <li class="text-red-500">No se encontraron resultados</li>
+                <li class="p-2 text-red-500">No se encontraron resultados</li>
                 {% endfor %}
             </ul>
 
