@@ -1,0 +1,31 @@
+{% extends 'rally_nicaragua/base.html' %}
+{% load breadcrumbs %}
+{% load static %}
+
+{% block content %}
+
+<!-- barra de direcciones -->
+
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+    <article>
+        <!-- Título del ítem -->
+        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+            {{ item.title }}
+        </h1>
+
+        <!-- Imagen principal del ítem -->
+        {% if item.image %}
+        <div class="my-6">
+            <img src="{{ item.image.url }}" alt="Imagen de {{ item.title }}" class="w-full h-auto max-h-96 object-cover rounded-lg shadow-lg">
+        </div>
+        {% endif %}
+
+        <!-- Cuerpo del contenido -->
+        {# La clase 'prose' de TailwindCSS es ideal para dar formato a bloques de texto como este #}
+        <div class="prose prose-lg max-w-none mt-8">
+            {{ item.body|safe }}
+        </div>
+    </article>
+</div>
+
+{% endblock %}

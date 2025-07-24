@@ -1,0 +1,49 @@
+{% extends 'rally_nicaragua/base.html' %}
+{% load breadcrumbs %}
+{% load static %}
+
+{% block content %}
+
+<!-- barra de direcciones -->
+
+<div class="container mx-auto px-4 py-8 max-w-5xl">
+    <!-- Título de la página -->
+    <h1 class="text-4xl font-extrabold text-gray-900 mb-4 border-b pb-2">
+        {{ category.name }} en {{ municipality.name }}
+    </h1>
+
+    <!-- Contenido introductorio/padre -->
+    {% if page.introduction %}
+    <div class="prose max-w-none mb-8">
+        {{ page.introduction|safe }}
+    </div>
+    {% endif %}
+
+    <!-- Lista de ítems de contenido -->
+    {% if items %}
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Descubre más:</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for item in items %}
+        <a href="{% url 'content-item-detail' municipality_slug=municipality.slug category_slug=category.slug item_slug=item.slug %}" class="block group">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden h-full transform transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                {% if item.image %}
+                <img src="{{ item.image.url }}" alt="Imagen de {{ item.title }}" class="w-full h-48 object-cover">
+                {% else %}
+                <div class="w-full h-48 bg-gray-200 flex items-center justify-center">
+                    <span class="text-gray-500">Sin imagen</span>
+                </div>
+                {% endif %}
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ item.title }}</h3>
+                    <p class="text-gray-700 text-sm">{{ item.summary|truncatewords:20 }}</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-gray-600 italic mt-6">No hay ítems específicos para mostrar en esta categoría todavía.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

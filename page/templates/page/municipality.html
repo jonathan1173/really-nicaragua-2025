@@ -2,54 +2,37 @@
 {% load breadcrumbs %}
 {% load static %}
 
-
-{% block scripts %}
-<script src="{% static 'page/js/municipalityCategory.js' %}" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-{% endblock %}
-
 {% block content %}
 
 <!-- barra de direcciones -->
-{% render_breadcrumb %}
+
+
 
 <div class="container mx-auto px-4 py-8 max-w-3xl">
     <h2 class="text-3xl font-extrabold text-gray-900 mb-6">
-        <div id="municipality-data" data-municipality="{{ municipality.name }}"></div>
         {{ municipality.name }}
     </h2>
-    {% if municipality.description != None %}
+    {% if municipality.description %}
     <div>
-        {{ municipality.description }}
+        {{ municipality.description|safe }}
     </div>
     {% endif %}
 
     {% if categories %}
-    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Categorías:</h3>
-    <!-- Modificación aquí: Usamos flexbox para las tarjetas horizontales -->
+    <h3 class="text-2xl font-semibold text-gray-800 my-4">Explora por Categoría:</h3>
     <ul class="flex justify-center items-center flex-wrap gap-4">
         {% for category in categories %}
-        <li
-            class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 flex-shrink-0 min-w-[180px] max-w-[250px]">
-            <button class="block text-xl font-medium text-blue-600 hover:text-blue-800 w-full text-center"
-                data-name="{{ category.name }}" type="button">
+        <li class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 flex-shrink-0 min-w-[180px] max-w-[250px]">
+            <a href="{% url 'category-page' municipality_slug=municipality.slug category_slug=category.slug %}" class="block p-4 text-xl font-medium text-blue-600 hover:text-blue-800 w-full text-center">
                 {{ category.name }}
-            </button>
+            </a>
         </li>
         {% endfor %}
     </ul>
 
     {% else %}
-    <p class="text-gray-600 italic">No hay categorías disponibles para este municipio.</p>
+    <p class="text-gray-600 italic mt-6">No hay contenido disponible para este municipio todavía.</p>
     {% endif %}
-
-    <div id="content-container" class="mt-8">
-        <!-- Aquí se inyectará el contenido por AJAX -->
-    </div>
-
 </div>
-
-
 
 {% endblock %}

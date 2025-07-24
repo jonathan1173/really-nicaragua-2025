@@ -24,7 +24,7 @@
   <ul class="space-y-2 list-disc pl-6">
     {% for muni in municipalities %}
     <li>
-      <a href="{% url 'municipality-options' municipality_name=muni.name %}"
+      <a href="{% url 'municipality-detail' municipality_slug=muni.slug  %}"
         class="text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-200">
         {{ muni.name }}
       </a>
