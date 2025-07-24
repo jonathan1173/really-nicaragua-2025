@@ -99,7 +99,7 @@ class ContentItem(models.Model):
     title = models.CharField("Título", max_length=200)
     slug = models.SlugField(max_length=220, unique=True, blank=True, help_text="Se genera automáticamente para la URL.")
     summary = models.TextField("Resumen", help_text="Texto corto para mostrar en las listas.")
-    image = models.ImageField("Imagen Principal", upload_to='content_items/images/', blank=True, null=True)
+    image = models.ImageField("Imagen Principal", upload_to='static/img/', blank=True, null=True)
     body = models.TextField("Cuerpo del Contenido", help_text="El contenido detallado para la página del ítem.")
     published = models.BooleanField("Publicado", default=True)
     created_at = models.DateTimeField("Fecha de creación", auto_now_add=True)
