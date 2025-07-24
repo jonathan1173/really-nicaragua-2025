@@ -15,6 +15,7 @@ const waitForMap = setInterval(() => {
 
         console.log("redirigiendo");
         const baseUrl = window.location.origin;
+        estado.name = estado.name.toLowerCase();
         const targetUrl = `${baseUrl}/home/maps/${estado.name}`;
         console.log(targetUrl);
         window.location.href = targetUrl;
