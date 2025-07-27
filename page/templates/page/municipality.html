@@ -2,10 +2,24 @@
 {% load breadcrumbs %}
 {% load static %}
 
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="{% static 'page/js/favorite.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 
 <!-- barra de direcciones -->
 {% render_breadcrumb %}
+
+<button id="favorite-btn"
+        class="mx-4 px-4 py-2 rounded text-white bg-blue-500 hover:bg-blue-600 transition"
+        data-url="{{ request.path }}"
+        data-title="{{ municipality.name }}">
+  Agregar favorito
+</button>
+
+
 
 <div class="container mx-auto px-4 py-8 max-w-3xl">
     <h2 class="text-3xl font-extrabold text-gray-900 mb-6">
@@ -21,8 +35,10 @@
     <h3 class="text-2xl font-semibold text-gray-800 my-4">Explora por Categoría:</h3>
     <ul class="flex justify-center items-center flex-wrap gap-4">
         {% for category in categories %}
-        <li class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 flex-shrink-0 min-w-[180px] max-w-[250px]">
-            <a href="{% url 'category-page' municipality_slug=municipality.slug category_slug=category.slug %}" class="block p-4 text-xl font-medium text-blue-600 hover:text-blue-800 w-full text-center">
+        <li
+            class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 flex-shrink-0 min-w-[180px] max-w-[250px]">
+            <a href="{% url 'category-page' municipality_slug=municipality.slug category_slug=category.slug %}"
+                class="block p-4 text-xl font-medium text-blue-600 hover:text-blue-800 w-full text-center">
                 {{ category.name }}
             </a>
         </li>
