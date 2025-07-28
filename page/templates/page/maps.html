@@ -1,107 +1,106 @@
 {% extends 'rally_nicaragua/base.html' %}
 {% load breadcrumbs %}
 {% load static %}
-
 {% block scripts %}
 <script src="{% static 'page/js/mapdata.js' %}" defer></script>
 <script src="{% static 'page/js/readmap.js' %}" defer></script>
 <script src="{% static 'page/js/countrymap.js' %}" defer></script>
 {% endblock %}
-
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 {% endblock %}
-
 {% block content %}
 <!-- barra de direcciones -->
 {% render_breadcrumb %}
 
-<div class="min-h-screen p-4 md:px-8 lg:px-12">
-    <div class="flex flex-col md:flex-row gap-8">
-        <!-- Contenedor del mapa: ancho completo en móviles, 40% en pantallas medianas/grandes -->
-        <div class="w-full md:w-[40%] p-3 md:p-5 bg-white shadow-xl rounded-lg border border-gray-100 flex items-center justify-center flex-shrink-0">
-            <div id="map" class="w-full ">
-                <!-- El mapa de SimpleMaps se renderizará aquí -->
-            </div>
-        </div>
-
-        <!-- Contenido de información (60% en pantallas medianas/grandes) -->
-        <div class="flex-1 flex flex-col gap-8">
-            <!-- Sección de Introducción/Hero adaptada -->
-            <section class="bg-white p-8 rounded-lg shadow-lg">
-                <div class="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
-                    <i data-lucide="map-pin" class="w-4 h-4"></i>
-                    Explora Nicaragua
-                </div>
-                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                    Un Viaje por la Tierra de Lagos y Volcanes
-                </h2>
-                <p class="text-lg text-gray-700 mb-6">
-                    Sumérgete en la rica cultura y la impresionante belleza natural de Nicaragua. Desde sus vibrantes ciudades
-                    coloniales hasta sus majestuosos volcanes y serenos lagos, cada rincón ofrece una aventura única.
-                </p>
-                <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl shadow-md flex items-center justify-center gap-2 transition-all duration-300">
-                    Más Información
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </button>
-            </section>
-        </div>
+<div class="min-h-screen bg-white p-4 md:px-8 lg:px-12">
+  <div class="flex flex-col md:flex-row gap-8">
+    <!-- Contenedor del mapa: ancho completo en móviles, 40% en pantallas medianas/grandes -->
+    <div
+      class="w-full md:w-[40%] p-3 md:p-5 bg-white  rounded-lg border border-gray-400 flex items-center justify-center flex-shrink-0">
+      <div id="map" class="w-full ">
+        <!-- El mapa de SimpleMaps se renderizará aquí -->
+      </div>
     </div>
-    
-    <!-- Sección de Aspectos Destacados Culturales/Características adaptada -->
-    <section class="bg-white p-8 rounded-lg shadow-xl mt-8"> {# Added p-8 for internal padding and mt-8 for spacing #}
-        <h3 class="text-2xl font-bold text-gray-900 mb-6">Aspectos Destacados</h3>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6"> {# First row of 2 items, with bottom margin #}
-            <div class="flex items-start gap-4 p-4 border border-gray-100 rounded-lg h-full"> {# Added p-4, border, h-full for equal height #}
-                <div class="w-12 h-12 bg-[#4A90E2] rounded-full flex items-center justify-center flex-shrink-0">
-                    <i data-lucide="waves" class="w-6 h-6 text-white"></i>
-                </div>
-                <div>
-                    <h4 class="text-xl font-semibold text-gray-900 mb-1">Lagos Impresionantes</h4>
-                    <p class="text-gray-600 text-sm">El Lago de Nicaragua, el más grande de Centroamérica, hogar de islas
-                        volcánicas.</p>
-                </div>
-            </div>
-            <div class="flex items-start gap-4 p-4 border border-gray-100 rounded-lg h-full"> {# Added p-4, border, h-full for equal height #}
-                <div class="w-12 h-12 bg-[#FF6B35] rounded-full flex items-center justify-center flex-shrink-0">
-                    <i data-lucide="mountain" class="w-6 h-6 text-white"></i>
-                </div>
-                <div>
-                    <h4 class="text-xl font-semibold text-gray-900 mb-1">Volcanes Activos</h4>
-                    <p class="text-gray-600 text-sm">Senderismo, sandboarding y vistas panorámicas desde cumbres volcánicas.</p>
-                </div>
-            </div>
+    <!-- Contenido de información (60% en pantallas medianas/grandes) -->
+    <div class="flex-1 flex flex-col gap-8">
+      <!-- Sección de Introducción/Hero adaptada -->
+      <section class="bg-white p-8 rounded-lg shadow-lg border border-gray-400">
+        <div
+          class="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
+          <i data-lucide="map-pin" class="w-4 h-4"></i>
+          Explora Nicaragua
         </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6"> {# Second row of 2 items #}
-            <div class="flex items-start gap-4 p-4 border border-gray-100 rounded-lg h-full"> {# Added p-4, border, h-full for equal height #}
-                <div class="w-12 h-12 bg-[#2ECC71] rounded-full flex items-center justify-center flex-shrink-0">
-                    <i data-lucide="users" class="w-6 h-6 text-white"></i>
-                </div>
-                <div>
-                    <h4 class="text-xl font-semibold text-gray-900 mb-1">Cultura Vibrante</h4>
-                    <p class="text-gray-600 text-sm">Música, danza, artesanías y festivales que celebran la identidad
-                        nicaragüense.</p>
-                </div>
-            </div>
-            <div class="flex items-start gap-4 p-4 border border-gray-100 rounded-lg h-full"> {# Added p-4, border, h-full for equal height #}
-                <div class="w-12 h-12 bg-[#F1C40F] rounded-full flex items-center justify-center flex-shrink-0">
-                    <i data-lucide="utensils" class="w-6 h-6 text-white"></i>
-                </div>
-                <div>
-                    <h4 class="text-xl font-semibold text-gray-900 mb-1">Gastronomía Deliciosa</h4>
-                    <p class="text-gray-600 text-sm">Sabores auténticos en platillos como el gallo pinto y el vigorón.</p>
-                </div>
-            </div>
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          Un Viaje por la Tierra de Lagos y Volcanes
+        </h2>
+        <p class="text-lg text-gray-700 mb-6">
+          Sumérgete en la rica cultura y la impresionante belleza natural de Nicaragua. Desde sus vibrantes ciudades
+          coloniales hasta sus majestuosos volcanes y serenos lagos, cada rincón ofrece una aventura única.
+        </p>
+        <button
+          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl shadow-md flex items-center justify-center gap-2 transition-all duration-300">
+          Más Información
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </section>
+    </div>
+  </div>
+  <!-- Sección de Aspectos Destacados Culturales/Características adaptada -->
+  <section class="bg-white p-8 rounded-lg  mt-8 border border-gray-400">
+    {# Added p-8 for internal padding and mt-8 for spacing #}
+    <h3 class="text-2xl font-bold text-gray-900 mb-6">Aspectos Destacados</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+      {# First row of 2 items, with bottom margin #}
+      <div class="flex items-start gap-4 p-4 border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-shadow duration-300">
+        {# Added p-4, border, h-full for equal height #}
+        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+          <i data-lucide="waves" class="w-6 h-6 text-white"></i>
         </div>
-    </section>
+        <div>
+          <h4 class="text-xl font-semibold text-gray-900 mb-1">Lagos Impresionantes</h4>
+          <p class="text-gray-600 text-sm">El Lago de Nicaragua, el más grande de Centroamérica, hogar de islas
+            volcánicas.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 p-4 border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-shadow duration-300">
+        {# Added p-4, border, h-full for equal height #}
+        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
+          <i data-lucide="mountain" class="w-6 h-6 text-white"></i>
+        </div>
+        <div>
+          <h4 class="text-xl font-semibold text-gray-900 mb-1">Volcanes Activos</h4>
+          <p class="text-gray-600 text-sm">Senderismo, sandboarding y vistas panorámicas desde cumbres volcánicas.</p>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {# Second row of 2 items #}
+      <div class="flex items-start gap-4 p-4 border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-shadow duration-300">
+        {# Added p-4, border, h-full for equal height #}
+        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+          <i data-lucide="users" class="w-6 h-6 text-white"></i>
+        </div>
+        <div>
+          <h4 class="text-xl font-semibold text-gray-900 mb-1">Cultura Vibrante</h4>
+          <p class="text-gray-600 text-sm">Música, danza, artesanías y festivales que celebran la identidad
+            nicaragüense.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 p-4 border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-shadow duration-300">
+        {# Added p-4, border, h-full for equal height #}
+        <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
+          <i data-lucide="utensils" class="w-6 h-6 text-white"></i>
+        </div>
+        <div>
+          <h4 class="text-xl font-semibold text-gray-900 mb-1">Gastronomía Deliciosa</h4>
+          <p class="text-gray-600 text-sm">Sabores auténticos en platillos como el gallo pinto y el vigorón.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
-<script>
-    // Initialize Lucide icons
-    lucide.createIcons();
-</script>
 {% endblock %}

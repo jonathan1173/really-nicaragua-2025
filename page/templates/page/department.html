@@ -1,58 +1,191 @@
 {% extends 'rally_nicaragua/base.html' %}
 {% load breadcrumbs %}
 {% load static %}
-
 {% block scripts %}
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="{% static 'page/js/favorite.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="{% static 'page/js/favorite.js' %}"></script>
+{% comment %} Asegúrate de que este script cargue Lucide si no está en base.html {% endcomment %}
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  });
+</script>
 {% endblock %}
-
 {% block content %}
+<!-- Barra de direcciones (minimalista, de la respuesta anterior) -->
+{% render_breadcrumb %}
 
-  {% render_breadcrumb %}
+<div class="min-h-screen bg-white text-gray-800">
+  <div class="container mx-auto px-4 py-8 max-w-7xl">
 
-  {% if user.is_authenticated %}
-    <button id="favorite-btn"
-            class="mx-4 px-4 py-2 rounded text-white bg-blue-700 transition"
-            data-url="{{ request.path }}"
-            data-title="{{ department.name }}">
-      Agregar favorito
-    </button>
-  {% endif %}
+    <!-- Sección de Introducción/Hero - Contenido General -->
+    <section class="mb-12 text-center">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4 leading-tight">
+        Descubre la Belleza de
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-green-600 to-yellow-600">
+          Nicaragua
+        </span>
+      </h1>
+      <p class="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto mb-8">
+        Explora un país de contrastes, desde sus vibrantes ciudades coloniales hasta sus imponentes volcanes y lagos serenos. Cada rincón te espera con una aventura única y una rica herencia cultural.
+      </p>
+      {% if user.is_authenticated %}
+      <button id="favorite-btn"
+        class="inline-flex items-center px-6 py-2 rounded-xl text-white bg-blue-600 hover:bg-blue-700 shadow-md transition-all duration-300 transform hover:scale-105"
+        data-url="{{ request.path }}" data-title="{{ department.name }}">
+        <i data-lucide="heart" class="w-5 h-5 mr-2"></i>
+        <span>Agregar a Favoritos</span>
+      </button>
+      {% endif %}
+    </section>
 
-  <div class="container mx-auto px-4 py-8 max-w-3xl">
-
-    {% if department %}
-      <h2 class="text-3xl font-extrabold text-gray-900 mb-4">
-        Departamento: {{ department.name }}
-      </h2>
-
+    <!-- Sección de Detalles del Departamento (Mantenido y Mejorado) -->
+    <section class="bg-white p-8 rounded-lg shadow-md border border-gray-200 mb-12">
+      {% if department %}
+      <div class="flex items-center mb-4">
+        <i data-lucide="map-pin" class="w-7 h-7 text-blue-600 mr-3"></i>
+        <h2 class="text-3xl font-extrabold text-gray-900">
+          Departamento: {{ department.name }}
+        </h2>
+      </div>
       {% if department.description %}
-        <p class="text-lg text-gray-700 leading-relaxed mb-6">
-          {{ department.description }}
-        </p>
+      <p class="text-lg text-gray-700 leading-relaxed mb-6 border-b border-gray-100 pb-6">
+        {{ department.description }}
+      </p>
       {% endif %}
 
       {% if municipalities %}
-        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Municipios:</h3>
-        <ul class="space-y-2 list-disc pl-6">
-          {% for muni in municipalities %}
-            <li>
-              <a href="{% url 'municipality-detail' municipality_slug=muni.slug %}"
-                 class="text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-200">
-                {{ muni.name }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
+      <h3 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
+        <i data-lucide="building-2" class="w-6 h-6 text-green-600 mr-2"></i>
+        Municipios:
+      </h3>
+      <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% for muni in municipalities %}
+        <li>
+          <a href="{% url 'municipality-detail' municipality_slug=muni.slug %}"
+            class="block p-4 rounded-lg bg-gray-50 hover:bg-gray-100 border border-gray-200 text-blue-600 hover:text-blue-800 transition-all duration-200 flex items-center gap-2 transform hover:translate-x-1">
+            <i data-lucide="map" class="w-5 h-5 text-blue-500"></i>
+            <span class="font-medium">{{ muni.name }}</span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
       {% else %}
-        <p class="text-gray-600 italic">No hay municipios disponibles para este departamento.</p>
+      <p class="text-gray-600 italic">No hay municipios disponibles para este departamento.</p>
       {% endif %}
-    
-    {% else %}
-      <p class="text-gray-600 italic">No se encontró el departamento solicitado.</p>
-    {% endif %}
-  
-  </div>
+      {% else %}
+      <p class="text-gray-600 italic text-center">No se encontró el departamento solicitado.</p>
+      {% endif %}
+    </section>
 
+    <!-- Sección de Aspectos Destacados de Nicaragua - Contenido General -->
+    <section class="mb-12">
+      <h3 class="text-3xl font-bold text-gray-900 text-center mb-8">Explora lo Mejor de Nicaragua</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center transition-all duration-300 hover:shadow-lg hover:scale-[1.01]">
+          <i data-lucide="mountain" class="w-12 h-12 text-orange-500 mx-auto mb-4"></i>
+          <h4 class="text-xl font-semibold text-gray-900 mb-2">Imponentes Volcanes</h4>
+          <p class="text-gray-700 text-sm">Escala cumbres, deslízate en arena volcánica y admira paisajes únicos.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center transition-all duration-300 hover:shadow-lg hover:scale-[1.01]">
+          <i data-lucide="waves" class="w-12 h-12 text-blue-500 mx-auto mb-4"></i>
+          <h4 class="text-xl font-semibold text-gray-900 mb-2">Lagos y Playas</h4>
+          <p class="text-gray-700 text-sm">Relájate en las costas del Pacífico o navega por los grandes lagos.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center transition-all duration-300 hover:shadow-lg hover:scale-[1.01]">
+          <i data-lucide="palette" class="w-12 h-12 text-green-500 mx-auto mb-4"></i>
+          <h4 class="text-xl font-semibold text-gray-900 mb-2">Rica Cultura y Tradiciones</h4>
+          <p class="text-gray-700 text-sm">Sumérgete en el folclore, artesanías y gastronomía local.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Galería de Imágenes - Contenido General -->
+    <section class="mb-12">
+      <h3 class="text-3xl font-bold text-gray-900 text-center mb-8">Momentos Inolvidables en Nicaragua</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="relative group rounded-lg overflow-hidden shadow-md border border-gray-200 transform hover:scale-[1.02] transition-transform duration-300">
+          <img src="/placeholder.svg?height=400&width=600" alt="Volcán de Nicaragua" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4 text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            Impresionante Volcán
+          </div>
+        </div>
+        <div class="relative group rounded-lg overflow-hidden shadow-md border border-gray-200 transform hover:scale-[1.02] transition-transform duration-300">
+          <img src="/placeholder.svg?height=400&width=600" alt="Calles coloniales" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4 text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            Encanto Colonial
+          </div>
+        </div>
+        <div class="relative group rounded-lg overflow-hidden shadow-md border border-gray-200 transform hover:scale-[1.02] transition-transform duration-300">
+          <img src="/placeholder.svg?height=400&width=600" alt="Atardecer en el lago" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4 text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            Serenos Atardeceres
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Preguntas Frecuentes (FAQ) - Contenido General -->
+    <section class="mb-12 max-w-3xl mx-auto">
+      <h3 class="text-3xl font-bold text-gray-900 text-center mb-8">Preguntas Frecuentes</h3>
+      <div class="space-y-4">
+        <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+          <button class="flex justify-between items-center w-full p-4 text-left font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 transition-colors duration-200 focus:outline-none">
+            <span>¿Cuál es la mejor época para visitar Nicaragua?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-600"></i>
+          </button>
+          <div class="p-4 text-gray-700 bg-white border-t border-gray-100 hidden">
+            La mejor época para visitar Nicaragua es durante la estación seca, de noviembre a abril, cuando el clima es soleado y las temperaturas son agradables.
+          </div>
+        </div>
+        <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+          <button class="flex justify-between items-center w-full p-4 text-left font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 transition-colors duration-200 focus:outline-none">
+            <span>¿Qué actividades se pueden realizar?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-600"></i>
+          </button>
+          <div class="p-4 text-gray-700 bg-white border-t border-gray-100 hidden">
+            Nicaragua ofrece una amplia gama de actividades, desde senderismo en volcanes, surf en el Pacífico, exploraciones coloniales en Granada y León, hasta paseos en bote por el Lago de Nicaragua y visitas a reservas naturales.
+          </div>
+        </div>
+        <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+          <button class="flex justify-between items-center w-full p-4 text-left font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 transition-colors duration-200 focus:outline-none">
+            <span>¿Es seguro viajar por Nicaragua?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-600"></i>
+          </button>
+          <div class="p-4 text-gray-700 bg-white border-t border-gray-100 hidden">
+            Como en cualquier destino, es importante tomar precauciones básicas. Generalmente, las zonas turísticas son seguras. Se recomienda informarse sobre la situación actual y seguir las recomendaciones de seguridad locales.
+          </div>
+        </div>
+      </div>
+       <script>
+        document.querySelectorAll('section.mb-12.max-w-3xl.mx-auto button').forEach(button => {
+          button.addEventListener('click', () => {
+            const content = button.nextElementSibling;
+            content.classList.toggle('hidden');
+            const icon = button.querySelector('i[data-lucide="chevron-down"]');
+            if (icon) {
+              icon.classList.toggle('rotate-180');
+            }
+          });
+        });
+      </script>
+    </section>
+
+    <!-- Call to Action Final - Contenido General -->
+    <section class="text-center bg-blue-600 p-12 rounded-lg shadow-xl mb-12">
+      <h3 class="text-3xl lg:text-4xl font-bold text-white mb-6">¿Listo para tu Aventura Nicaragüense?</h3>
+      <p class="text-xl text-blue-100 max-w-2xl mx-auto mb-8">
+        Planifica tu viaje y sumérgete en una experiencia cultural única y descubre todo lo que nuestro hermoso país tiene para ofrecer.
+      </p>
+      <a href="{% url 'home-maps' %}"
+        class="inline-flex items-center bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+        <i data-lucide="plane" class="w-5 h-5 mr-2"></i>
+        <span>Planificar mi Viaje</span>
+      </a>
+    </section>
+
+  </div>
+</div>
 {% endblock %}

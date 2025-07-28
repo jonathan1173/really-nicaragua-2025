@@ -1,17 +1,26 @@
-<div class="flex justify-center items-center p-4  w-full z-20">
-
+<div class="flex justify-center items-center p-4 w-full z-20">
   <div
-    class="flex justify-start items-center w-full max-w-7xl bg-blue-600 backdrop-blur-sm py-4 px-8 rounded-lg flex-wrap gap-1">
-    {% for item in breadcrumb %}
-    {% if item.url %}
-    <a href="{{ item.url }}" class="text-white font-bold text-lg">{{ item.name }}</a>
-    {% if not forloop.last %}
-    <span class="text-white font-bold text-lg">/</span>
-    {% endif %}
-    {% else %}
-    <span class="text-white font-bold text-lg">{{ item.name }}</span>
-    {% endif %}
-    {% endfor %}
+    class="flex items-center w-full max-w-7xl bg-white border border-gray-200 shadow-sm py-2.5 px-4 rounded-lg flex-wrap gap-x-1.5">
+    <nav class="flex" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1.5 md:space-x-2">
+        {% for item in breadcrumb %}
+        <li class="inline-flex items-center">
+          {% if item.url %}
+          <a href="{{ item.url }}"
+            class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors duration-200">
+            {{ item.name }}
+          </a>
+          {% if not forloop.last %}
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 mx-1"></i>
+          {% endif %}
+          {% else %}
+          <span class="text-sm font-semibold text-gray-800">
+            {{ item.name }}
+          </span>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ol>
+    </nav>
   </div>
-
 </div>
