@@ -1,10 +1,10 @@
 <div class="flex justify-center items-center p-4 w-full z-20">
   <div
-    class="flex items-center w-full max-w-7xl bg-white border border-gray-200 shadow-sm py-2.5 px-4 rounded-lg flex-wrap gap-x-1.5">
+    class="flex items-center w-full max-w-7xl bg-white border border-gray-200 shadow-sm p-2.5  rounded-lg flex-wrap gap-x-1.5">
     <nav class="flex" aria-label="Breadcrumb">
-      <ol class="inline-flex items-center space-x-1.5 md:space-x-2">
+      <ol class="inline-flex items-center flex-wrap">
         {% for item in breadcrumb %}
-        <li class="inline-flex items-center">
+        <li class="inline-flex items-center justify-center">
           {% if item.url %}
           <a href="{{ item.url }}"
             class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors duration-200">
