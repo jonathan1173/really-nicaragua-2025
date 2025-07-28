@@ -73,77 +73,93 @@ var simplemaps_countrymap_mapdata = {
     state_image_position: "",
     location_image_url: ""
   },
-  state_specific: {
-    NIAN: {
-      name: "Atlántico-Norte",
-      color: "#E57373" // rojo suave
-    },
-    NIAS: {
-      name: "Atlántico-Sur",
-      color: "#BA90C8" // lila suave
-    },
-    NIBO: {
-      name: "Boaco",
-      color: "#E57373" // rojo suave
-    },
-    NICA: {
-      name: "Carazo",
-      color: "#E57373" // rojo suave
-    },
-    NICI: {
-      name: "Chinandega",
-      color: "#81D4FA" // celeste claro y cálido
-    },
-    NICO: {
-      name: "Chontales",
-      color: "#81D4FA" // celeste claro y cálido
-    },
-    NIES: {
-      name: "Estelí",
-      color: "#E57373" // rojo suave
-    },
-    NIGR: {
-      name: "Granada",
-      color: "#BA90C8" // lila suave
-    },
-    NIJI: {
-      name: "Jinotega",
-      color: "#81D4FA" // celeste claro y cálido
-    },
-    NILE: {
-      name: "León",
-      color: "#BA90C8" // lila suave
-    },
-    NIMD: {
-      name: "Madriz",
-      color: "#BA90C8" // lila suave
-    },
-    NIMN: {
-      name: "Managua",
-      color: "#81D4FA" // celeste claro y cálido
-    },
-    NIMS: {
-      name: "Masaya",
-      color: "#FFA500", // amarillo cálido suave
-      url: ""
-    },
-    NIMT: {
-      name: "Matagalpa",
-      color: "#FFA500" // amarillo cálido suave
-    },
-    NINS: {
-      name: "Nueva-Segovia",
-      color: "#FFA500" // amarillo cálido suave
-    },
-    NIRI: {
-      name: "Rivas",
-      color: "#FFA500" // amarillo cálido suave
-    },
-    NISJ: {
-      name: "Rio-San-Juan",
-      color: "#E57373" // rojo suave
-    }
+state_specific: {
+  NIAN: {
+    name: "Atlántico-Norte",
+    slug: "atlantico-norte",
+    color: "#E57373" // rojo suave
+  },
+  NIAS: {
+    name: "Atlántico-Sur",
+    slug: "atlantico-sur",
+    color: "#BA90C8" // lila suave
+  },
+  NIBO: {
+    name: "Boaco",
+    slug: "boaco",
+    color: "#E57373" // rojo suave
+  },
+  NICA: {
+    name: "Carazo",
+    slug: "carazo",
+    color: "#E57373" // rojo suave
+  },
+  NICI: {
+    name: "Chinandega",
+    slug: "chinandega",
+    color: "#81D4FA" // celeste claro y cálido
+  },
+  NICO: {
+    name: "Chontales",
+    slug: "chontales",
+    color: "#81D4FA" // celeste claro y cálido
+  },
+  NIES: {
+    name: "Estelí",
+    slug: "esteli",
+    color: "#E57373" // rojo suave
+  },
+  NIGR: {
+    name: "Granada",
+    slug: "granada",
+    color: "#BA90C8" // lila suave
+  },
+  NIJI: {
+    name: "Jinotega",
+    slug: "jinotega",
+    color: "#81D4FA" // celeste claro y cálido
+  },
+  NILE: {
+    name: "León",
+    slug: "leon",
+    color: "#BA90C8" // lila suave
+  },
+  NIMD: {
+    name: "Madriz",
+    slug: "madriz",
+    color: "#BA90C8" // lila suave
+  },
+  NIMN: {
+    name: "Managua",
+    slug: "managua",
+    color: "#81D4FA" // celeste claro y cálido
+  },
+  NIMS: {
+    name: "Masaya",
+    slug: "masaya",
+    color: "#FFA500" // amarillo cálido suave
+  },
+  NIMT: {
+    name: "Matagalpa",
+    slug: "matagalpa",
+    color: "#FFA500" // amarillo cálido suave
+  },
+  NINS: {
+    name: "Nueva-Segovia",
+    slug: "nueva-segovia",
+    color: "#FFA500" // amarillo cálido suave
+  },
+  NIRI: {
+    name: "Rivas",
+    slug: "rivas",
+    color: "#FFA500" // amarillo cálido suave
+  },
+  NISJ: {
+    name: "Rio-San-Juan",
+    slug: "rio-san-juan",
+    color: "#E57373" // rojo suave
   }
+}
 
   ,
   locations: {},

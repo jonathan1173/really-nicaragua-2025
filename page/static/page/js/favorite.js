@@ -2,21 +2,19 @@ document.addEventListener('DOMContentLoaded', function () {
   const btn = document.getElementById('favorite-btn');
   const url = btn.getAttribute('data-url');
 
-  // Verificar si ya está en favoritos
   axios.get('/users/is-favorite/', { params: { url: url } })
     .then(response => {
       if (response.data.favorite) {
         btn.textContent = 'Quitar favorito';
-        btn.classList.remove('bg-blue-500');
-        btn.classList.add('bg-red-500');
+        btn.classList.remove('bg-blue-700');
+        btn.classList.add('bg-red-600');
       } else {
         btn.textContent = 'Agregar favorito';
-        btn.classList.remove('bg-red-500');
-        btn.classList.add('bg-blue-500');
+        btn.classList.remove('bg-red-600');
+        btn.classList.add('bg-blue-700');
       }
     });
-  
-  // Toggle favoritos
+
   btn.addEventListener('click', function () {
     const title = btn.getAttribute('data-title');
 
@@ -30,13 +28,12 @@ document.addEventListener('DOMContentLoaded', function () {
       const added = response.data.status === 'added';
       btn.textContent = added ? 'Quitar favorito' : 'Agregar favorito';
 
-      // Cambiar color
       if (added) {
-        btn.classList.remove('bg-blue-500');
-        btn.classList.add('bg-red-500');
+        btn.classList.remove('bg-blue-700');
+        btn.classList.add('bg-red-600');
       } else {
-        btn.classList.remove('bg-red-500');
-        btn.classList.add('bg-blue-500');
+        btn.classList.remove('bg-red-600');
+        btn.classList.add('bg-blue-700');
       }
     })
     .catch(error => {

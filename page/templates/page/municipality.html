@@ -12,13 +12,14 @@
 <!-- barra de direcciones -->
 {% render_breadcrumb %}
 
+{% if user.is_authenticated %}
 <button id="favorite-btn"
-        class="mx-4 px-4 py-2 rounded text-white bg-blue-500 hover:bg-blue-600 transition"
+        class="mx-4 px-4 py-2 rounded text-white bg-blue-700 transition"
         data-url="{{ request.path }}"
-        data-title="{{ municipality.name }}">
+        data-title="{{ department.name }}">
   Agregar favorito
 </button>
-
+{% endif %}
 
 
 <div class="container mx-auto px-4 py-8 max-w-3xl">

@@ -23,13 +23,21 @@ def page_maps(request):
 
 # [REFACTORIZADO] Muestra los municipios de un departamento. Ahora usa 'slug' para URLs más limpias.
 def page_department(request, department_slug):
-    department = get_object_or_404(Department, slug=department_slug)
-    municipalities = department.municipalities.all()
+    department = Department.objects.filter(slug=department_slug).first()
 
+    if not department:
+        return render(request, "page/department.html", {
+            "error_message": "El departamento solicitado no está disponible.",
+            "department": None,
+            "municipalities": []
+        })
+
+    municipalities = department.municipalities.all()
     return render(request, "page/department.html", {
         "department": department,
-        "municipalities": municipalities,
+        "municipalities": municipalities
     })
+
 
 # [REFACTORIZADO] Muestra el detalle de un municipio y las categorías de contenido que tiene disponibles.
 def municipality_detail(request, municipality_slug):
