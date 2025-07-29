@@ -8,28 +8,26 @@
 {% endblock %}
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
-<script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 {% endblock %}
 {% block content %}
 <!-- barra de direcciones -->
 {% render_breadcrumb %}
 
-<div class="min-h-screen bg-white p-4 md:px-8 lg:px-12">
-  <div class="flex flex-col md:flex-row gap-8">
-    <!-- Contenedor del mapa: ancho completo en móviles, 40% en pantallas medianas/grandes -->
-    <div
-      class="w-full md:w-[40%] p-3 md:p-5 bg-white  rounded-lg border border-gray-400 flex items-center justify-center flex-shrink-0">
-      <div id="map" class="w-full ">
+<div class="min-h-screen h-full bg-white p-4 md:px-8 lg:px-12">
+  <!-- introduccion: contenido y mapa  -->
+  <div class="grid grid-cols-1 lg:grid-cols-[40%_1fr] gap-8 h-full">
+    <!-- Contenedor del mapa -->
+    <div class="p-3 md:p-5 bg-white rounded-lg border border-gray-400 flex flex-col items-center justify-center order-2 lg:order-1">
+      <div id="map" class="w-full">
         <!-- El mapa de SimpleMaps se renderizará aquí -->
       </div>
     </div>
-    <!-- Contenido de información (60% en pantallas medianas/grandes) -->
-    <div class="flex-1 flex flex-col gap-8">
-      <!-- Sección de Introducción/Hero adaptada -->
-      <section class="bg-white p-8 rounded-lg shadow-lg border border-gray-400">
-        <div
-          class="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
+
+    <!-- Contenido de información -->
+    <section class="bg-white p-8 rounded-lg shadow-lg border border-gray-400 flex flex-col justify-between order-1 lg:order-2">
+      <div>
+        <div class="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
           <i data-lucide="map-pin" class="w-4 h-4"></i>
           Explora Nicaragua
         </div>
@@ -40,21 +38,24 @@
           Sumérgete en la rica cultura y la impresionante belleza natural de Nicaragua. Desde sus vibrantes ciudades
           coloniales hasta sus majestuosos volcanes y serenos lagos, cada rincón ofrece una aventura única.
         </p>
-        <button
-          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl shadow-md flex items-center justify-center gap-2 transition-all duration-300">
-          Más Información
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </button>
-      </section>
-    </div>
+      </div>
+      <button
+        class="self-start bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl shadow-md flex items-center justify-center gap-2 transition-all duration-300">
+        Más Información
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </button>
+    </section>
   </div>
+
+
   <!-- Sección de Aspectos Destacados Culturales/Características adaptada -->
   <section class="bg-white p-8 rounded-lg  mt-8 border border-gray-400">
     {# Added p-8 for internal padding and mt-8 for spacing #}
     <h3 class="text-2xl font-bold text-gray-900 mb-6">Aspectos Destacados</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
       {# First row of 2 items, with bottom margin #}
-      <div class="flex items-start gap-4 p-4 border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-shadow duration-300">
+      <div
+        class="flex items-start gap-4 p-4 border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-shadow duration-300">
         {# Added p-4, border, h-full for equal height #}
         <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
           <i data-lucide="waves" class="w-6 h-6 text-white"></i>
@@ -65,7 +66,8 @@
             volcánicas.</p>
         </div>
       </div>
-      <div class="flex items-start gap-4 p-4 border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-shadow duration-300">
+      <div
+        class="flex items-start gap-4 p-4 border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-shadow duration-300">
         {# Added p-4, border, h-full for equal height #}
         <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
           <i data-lucide="mountain" class="w-6 h-6 text-white"></i>
@@ -78,7 +80,8 @@
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
       {# Second row of 2 items #}
-      <div class="flex items-start gap-4 p-4 border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-shadow duration-300">
+      <div
+        class="flex items-start gap-4 p-4 border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-shadow duration-300">
         {# Added p-4, border, h-full for equal height #}
         <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
           <i data-lucide="users" class="w-6 h-6 text-white"></i>
@@ -89,7 +92,8 @@
             nicaragüense.</p>
         </div>
       </div>
-      <div class="flex items-start gap-4 p-4 border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-shadow duration-300">
+      <div
+        class="flex items-start gap-4 p-4 border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-shadow duration-300">
         {# Added p-4, border, h-full for equal height #}
         <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
           <i data-lucide="utensils" class="w-6 h-6 text-white"></i>
