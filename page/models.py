@@ -65,10 +65,6 @@ class Category(models.Model):
         ordering = ['name']
 
 class CategoryPage(models.Model):
-    """
-    Representa la página de una categoría específica dentro de un municipio.
-    Contiene el contenido introductorio o "padre".
-    """
     municipality = models.ForeignKey(Municipality, on_delete=models.CASCADE, related_name='category_pages', verbose_name="Municipio")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='municipality_pages', verbose_name="Categoría")
     introduction = models.TextField("Contenido Introductorio", help_text="Contenido principal para la página de esta categoría en el municipio.", blank=True)
@@ -91,10 +87,6 @@ class CategoryPage(models.Model):
         return f"Página de {self.category.name} en {self.municipality.name}"
 
 class ContentItem(models.Model):
-    """
-    Representa un "ítem" de contenido individual (artículo, lugar, etc.)
-    que pertenece a una página de categoría.
-    """
     page = models.ForeignKey(CategoryPage, on_delete=models.CASCADE, related_name='items', verbose_name="Página de Categoría")
     title = models.CharField("Título", max_length=200)
     slug = models.SlugField(max_length=220, unique=True, blank=True, help_text="Se genera automáticamente para la URL.")
@@ -132,3 +124,24 @@ class ContentItem(models.Model):
         verbose_name = "Ítem de Contenido"
         verbose_name_plural = "Ítems de Contenido"
         ordering = ['-created_at']
+
+class Event(models.Model):
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, blank=True)
+    summary = models.TextField(blank=True)
+    date = models.DateField(blank=True)
+    image = models.ImageField("Imagen Principal", upload_to='static/img/events/', blank=True, null=True)
+    municipality = models.ForeignKey(Department, on_delete=models.CASCADE)
+    published = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"Evento de {self.title} en {self.municipality.name}"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('event-detail', kwargs={'event_slug': self.slug})

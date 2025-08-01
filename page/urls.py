@@ -7,7 +7,8 @@ from .views import (
     municipality_detail, 
     category_page_view,
     content_item_detail,
-    view_search
+    view_search,
+    event_detail
 )
 
 urlpatterns = [
@@ -31,5 +32,7 @@ urlpatterns = [
     # Ejemplo: /home/maps/granada/gastronomia/vigoron/
     path('home/maps/<slug:municipality_slug>/<slug:category_slug>/<slug:item_slug>/', content_item_detail, name='content-item-detail'),
     
-    path('home/search/', view_search, name='page-search')
+    path('home/search/', view_search, name='page-search'),
+    
+    path('eventos/<slug:event_slug>/', event_detail, name='event-detail'),
 ]
