@@ -1,15 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const btn = document.getElementById('favorite-btn');
+  const btn = document.getElementById('favorite-btn');  // ID corregido
   const url = btn.getAttribute('data-url');
+  const btnText = btn.querySelector('.btn-text'); // elemento texto
 
   axios.get('/users/is-favorite/', { params: { url: url } })
     .then(response => {
       if (response.data.favorite) {
-        btn.textContent = 'Quitar favorito';
+        btnText.textContent = 'Quitar favorito';
         btn.classList.remove('bg-blue-700');
         btn.classList.add('bg-red-600');
       } else {
-        btn.textContent = 'Agregar favorito';
+        btnText.textContent = 'Agregar favorito';
         btn.classList.remove('bg-red-600');
         btn.classList.add('bg-blue-700');
       }
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     .then(response => {
       const added = response.data.status === 'added';
-      btn.textContent = added ? 'Quitar favorito' : 'Agregar favorito';
+      btnText.textContent = added ? 'Quitar favorito' : 'Agregar favorito';
 
       if (added) {
         btn.classList.remove('bg-blue-700');
