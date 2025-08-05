@@ -78,9 +78,8 @@ def content_item_detail(request, municipality_slug, category_slug, item_slug):
     )
     context = {
         'item': item,
-        'page': item.page,
-        'municipality': item.municipality,
-        'category': item.category,
+        'municipality': item.page.municipality,
+        'category': item.schedule,
     }
     return render(request, 'page/content_item_detail.html', context)
 

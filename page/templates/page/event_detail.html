@@ -50,7 +50,7 @@
       <p class="text-sm text-gray-500 mb-4">Fecha del evento: {{ event.date|date:"d/m/Y" }}</p>
 
       <!-- Resumen del evento -->
-      <div class="prose prose-lg max-w-none mt-4 text-gray-700 leading-relaxed">
+      <div class="prose text-justify prose-lg max-w-none mt-4 text-gray-700 leading-relaxed">
         {{ event.summary|linebreaks }}
       </div>
     </article>

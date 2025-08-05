@@ -86,6 +86,24 @@ class CategoryPage(models.Model):
     def __str__(self):
         return f"Página de {self.category.name} en {self.municipality.name}"
 
+class CategoryItem(models.Model):
+    name = models.CharField("Nombre", max_length=100, unique=True)
+    slug = models.SlugField(max_length=120, unique=True, blank=True, help_text="Versión del nombre para URLs amigables.")
+    description = models.TextField("Descripción", blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Categoría del Ítem"
+        verbose_name_plural = "Categorías de Ítems"
+        ordering = ['name']
+
 class ContentItem(models.Model):
     page = models.ForeignKey(CategoryPage, on_delete=models.CASCADE, related_name='items', verbose_name="Página de Categoría")
     title = models.CharField("Título", max_length=200)
@@ -96,6 +114,11 @@ class ContentItem(models.Model):
     published = models.BooleanField("Publicado", default=True)
     created_at = models.DateTimeField("Fecha de creación", auto_now_add=True)
     updated_at = models.DateTimeField("Última actualización", auto_now=True)
+
+    location = models.CharField("Ubicación", max_length=255, blank=True, null=True)
+    category = models.ForeignKey(CategoryItem, on_delete=models.CASCADE, related_name='content_items', verbose_name="Categoría del Ítem")
+    schedule = models.CharField("Horario", max_length=100, blank=True, null=True)
+
 
     def __str__(self):
         return self.title
@@ -111,19 +134,12 @@ class ContentItem(models.Model):
             'category_slug': self.page.category.slug,
             'item_slug': self.slug
         })
-
-    @property
-    def municipality(self):
-        return self.page.municipality
-
-    @property
-    def category(self):
-        return self.page.category
-
+        
     class Meta:
         verbose_name = "Ítem de Contenido"
         verbose_name_plural = "Ítems de Contenido"
         ordering = ['-created_at']
+        
 
 class Event(models.Model):
     title = models.CharField(max_length=200)
