@@ -3,7 +3,9 @@
 {% load static %}
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+{% if user.is_authenticated %}
 <script src="{% static 'page/js/favorite.js' %}"></script>
+{% endif %}
 {% comment %} Asegúrate de que este script cargue Lucide si no está en base.html {% endcomment %}
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -94,39 +96,26 @@
       {% endif %}
     </section>
 
-    <!-- Sección de Galería de Imágenes - Contenido General -->
+    <!-- Galería de Imágenes -->
     <section class="mb-12">
       <h3 class="text-3xl font-bold text-gray-900 text-center mb-8">Galería de {{ municipality.name }}</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for img in gallery_images %}
         <div
           class="relative group rounded-lg overflow-hidden shadow-md border border-gray-200 transform hover:scale-[1.02] transition-transform duration-300">
-          <img src="{% static 'img/masaya.webp' %}" alt="Calle colonial"
+          <img src="{{ img.image.url }}" alt="{{ img.title }}"
             class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
           <div
             class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4 text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            Calles con historia
+            {{ img.title }}
           </div>
         </div>
-        <div
-          class="relative group rounded-lg overflow-hidden shadow-md border border-gray-200 transform hover:scale-[1.02] transition-transform duration-300">
-          <img src="{% static 'img/masaya.webp' %}" alt="Mercado local"
-            class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4 text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            Vida local vibrante
-          </div>
-        </div>
-        <div
-          class="relative group rounded-lg overflow-hidden shadow-md border border-gray-200 transform hover:scale-[1.02] transition-transform duration-300">
-          <img src="{% static 'img/masaya.webp' %}" alt="Paisaje natural"
-            class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4 text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            Naturaleza exuberante
-          </div>
-        </div>
+        {% empty %}
+        <p class="col-span-full text-center text-gray-500">No hay imágenes disponibles.</p>
+        {% endfor %}
       </div>
     </section>
+
 
     <!-- Call to Action Final -->
     <section class="text-center bg-blue-600 p-12 rounded-lg shadow-xl mb-12">

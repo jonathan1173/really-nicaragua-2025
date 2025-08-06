@@ -46,10 +46,20 @@ class Municipality(models.Model):
         unique_together = ('name', 'department')
         ordering = ['department__name', 'name']
 
+class MunicipalityImage(models.Model):
+    municipality = models.ForeignKey(Municipality, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField("Imagen Municipio", upload_to='static/img/municipalities/', blank=True, null=True)
+    title = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+    def __str__(self):
+        return f"{self.id}. {self.title} - {self.municipality.name}, {self.municipality.department.name}"
+
 class Category(models.Model):
     name = models.CharField("Nombre", max_length=100, unique=True)
     slug = models.SlugField(max_length=120, unique=True, blank=True, help_text="Versión del nombre para URLs amigables.")
-    description = models.TextField("Descripción", blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -140,7 +150,6 @@ class ContentItem(models.Model):
         verbose_name_plural = "Ítems de Contenido"
         ordering = ['-created_at']
         
-
 class Event(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)

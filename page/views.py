@@ -42,11 +42,14 @@ def municipality_detail(request, municipality_slug):
     municipality = get_object_or_404(Municipality, slug=municipality_slug)
     category_pages = CategoryPage.objects.filter(municipality=municipality).select_related('category')
     categories = [page.category for page in category_pages]
+    gallery_images = municipality.images.all()[:6]
+
 
     return render(request, "page/municipality.html", {
         "municipality": municipality,
         "department": municipality.department,
         "categories": categories,
+        "gallery_images": gallery_images,
     })
 
 # Muestra la página de una categoría: su introducción y la lista de ítems
