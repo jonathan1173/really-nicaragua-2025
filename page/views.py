@@ -93,21 +93,34 @@ def event_detail(request, event_slug):
 
 # La barra de búsqueda busca de departamentos, municipios e ítems de contenido.
 def view_search(request):
-    query = request.GET.get('search','').strip()
+    query = request.GET.get('search', '').strip()
+
     departments = []
     municipalities = []
     content_items = []
 
     if query:
-        departments = Department.objects.filter(name__icontains=query)
-        municipalities = Municipality.objects.filter(name__icontains=query)
-        content_items = ContentItem.objects.filter(title__icontains=query,published=True)
+       
+        departments = Department.objects.filter(
+            name__icontains=query
+        )
 
-    return render(request, 'page/search.html',{
+        municipalities = Municipality.objects.filter(
+            name__icontains=query
+        ).select_related('department')
+
+        content_items = (
+            ContentItem.objects.filter(
+                title__icontains=query,
+                published=True
+            )
+            .select_related('page__municipality', 'category')  
+        )
+
+
+    return render(request, 'page/search.html', {
         'query': query,
         'departments': departments,
         'municipalities': municipalities,
         'content_items': content_items,
     })
-    
-

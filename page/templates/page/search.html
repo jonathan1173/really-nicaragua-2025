@@ -3,65 +3,71 @@
 {% load static %}
 
 {% block content %}
- 
+
 <div class="container mx-auto px-4 py-8 max-w-4xl">
     <h1 class="text-3xl font-extrabold text-gray-900 mb-6">
         Resultados para: <span class="text-blue-600">"{{ query }}"</span>
     </h1>
 
     {% if not departments and not municipalities and not content_items %}
-        <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mt-8" role="alert">
-            <p class="font-bold">Sin resultados</p>
-            <p>No se encontraron resultados para tu búsqueda. Intenta con otras palabras.</p>
-        </div>
+    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mt-8" role="alert">
+        <p class="font-bold">Sin resultados</p>
+        <p>No se encontraron resultados para tu búsqueda. Intenta con otras palabras.</p>
+    </div>
     {% else %}
-        <!-- Resultados de Departamentos -->
-        {% if departments %}
-            <div class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Departamentos</h2>
-                <ul class="list-disc pl-5 space-y-2">
-                    {% for dept in departments %}
-                        <li>
-                            <a href="{% url 'maps-department' department_slug=dept.slug %}" class="text-blue-600 hover:underline">
-                                {{ dept.name }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
+    <!-- Resultados de Departamentos -->
+    {% if departments %}
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Departamentos</h2>
+        <ul class="list-disc pl-5 space-y-2">
+            {% for dept in departments %}
+            <li>
+                <a href="{% url 'maps-department' department_slug=dept.slug %}" class="text-blue-600 hover:underline">
+                    {{ dept.name }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
 
-        <!-- Resultados de Municipios -->
-        {% if municipalities %}
-            <div class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Municipios</h2>
-                <ul class="list-disc pl-5 space-y-2">
-                    {% for muni in municipalities %}
-                        <li>
-                            <a href="{% url 'municipality-detail' municipality_slug=muni.slug %}" class="text-blue-600 hover:underline">
-                                {{ muni.name }} ({{ muni.department.name }})
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
+    <!-- Resultados de Municipios -->
+    {% if municipalities %}
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Municipios</h2>
+        <ul class="list-disc pl-5 space-y-2">
+            {% for muni in municipalities %}
+            <li>
+                <a href="{% url 'municipality-detail' municipality_slug=muni.slug %}"
+                    class="text-blue-600 hover:underline">
+                    {{ muni.name }} ({{ muni.department.name }})
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
 
-        <!-- Resultados de Contenido -->
-        {% if content_items %}
-            <div class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Contenido Relacionado</h2>
-                <div class="space-y-4">
-                    {% for item in content_items %}
-                        <a href="{% url 'content-item-detail' municipality_slug=item.municipality.slug category_slug=item.category.slug item_slug=item.slug %}" class="block p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                            <h3 class="text-xl font-semibold text-gray-900">{{ item.title }}</h3>
-                            <p class="text-sm text-gray-500 mb-2">{{ item.category.name }} en {{ item.municipality.name }}</p>
-                            <p class="text-gray-700">{{ item.summary|truncatewords:30 }}</p>
-                        </a>
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
+    <!-- Resultados de Contenido -->
+    {% if content_items %}
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Contenido Relacionado</h2>
+        <div class="space-y-4">
+            {% for item in content_items %}
+            <a
+                href="{% url 'content-item-detail' municipality_slug=item.page.municipality.slug category_slug=item.page.category.slug item_slug=item.slug %}"
+                class="block p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <h3 class="text-xl font-semibold text-gray-900">{{ item.title }}</h3>
+                <p class="text-sm text-gray-500 mb-2">
+                    {{ item.category.name }} en {{ item.page.municipality.name }}
+                </p>
+                <p class="text-gray-700">{{ item.summary|truncatewords:30 }}</p>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
     {% endif %}
 </div>
 
