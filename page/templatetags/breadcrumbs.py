@@ -6,9 +6,17 @@ register = template.Library()
 @register.inclusion_tag('components/breadcrumb.html', takes_context=True)
 def render_breadcrumb(context):
     request = context['request']
+    path = request.path 
+    
     breadcrumb = []
     breadcrumb.append({'name': 'Home', 'url': reverse('page-home')})
-    breadcrumb.append({'name': 'Mapa', 'url': reverse('home-maps')})
+    # Solo incluir Mapa si la URL empieza con /maps o coincide con la vista 'home-maps'
+    if path.startswith(reverse('home-maps')):
+        breadcrumb.append({'name': 'Mapa', 'url': reverse('home-maps')})
+
+    # Incluir Perfil si estás en la página de perfil
+    if path.startswith(reverse('users-profile')):
+        breadcrumb.append({'name': 'Perfil', 'url': reverse('users-profile')})
 
     # Extraer los objetos principales del contexto de la vista
     item = context.get('item')
