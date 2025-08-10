@@ -79,11 +79,28 @@ def content_item_detail(request, municipality_slug, category_slug, item_slug):
         page__category__slug=category_slug,
         published=True
     )
+
+    # Obtener otros ítems de la misma categoría y municipio, excluyendo el actual
+    otros_items = (
+        ContentItem.objects.filter(
+            page__municipality=item.page.municipality,
+            page__category=item.page.category,
+            published=True
+        )
+        .exclude(id=item.id)  # excluir el actual
+    )
+
     context = {
         'item': item,
         'municipality': item.page.municipality,
-        'category': item.schedule,
+        'category': item.page.category,
+        'otros_items': otros_items,  # pasamos la lista
     }
+    for item in otros_items:
+        print(f"Otros ítems encontrados: {item.title}")
+        print(otros_items[1].image)        # Ruta o None
+        print(bool(otros_items[1].image))  # True si tiene imagen
+
     return render(request, 'page/content_item_detail.html', context)
 
 # Muestra los detalles de un evento.

@@ -48,7 +48,7 @@ class Municipality(models.Model):
 
 class MunicipalityImage(models.Model):
     municipality = models.ForeignKey(Municipality, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField("Imagen Municipio", upload_to='static/img/municipalities/', blank=True, null=True)
+    image = models.ImageField("Imagen Municipio", upload_to='static/img/municipalities/', blank=True)
     title = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -155,7 +155,7 @@ class Event(models.Model):
     slug = models.SlugField(unique=True, blank=True)
     summary = models.TextField(blank=True)
     date = models.DateField(blank=True)
-    image = models.ImageField("Imagen Principal", upload_to='static/img/events/', blank=True, null=True)
+    image = models.ImageField("Imagen Principal", upload_to='static/img/events/', blank=True)
     municipality = models.ForeignKey(Department, on_delete=models.CASCADE)
     published = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)

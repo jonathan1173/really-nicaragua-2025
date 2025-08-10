@@ -9,7 +9,7 @@
 {% endif %}
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
     if (typeof lucide !== 'undefined') {
       lucide.createIcons();
     }
@@ -31,7 +31,7 @@
       </h1>
 
       <!-- Botón de Favorito -->
-        {% if user.is_authenticated %}
+      {% if user.is_authenticated %}
       <button id="favorite-btn" data-url="{{ request.path }}" data-title="{{ item.title }}"
         class="inline-flex items-center px-6 py-2 rounded-xl text-white bg-blue-600 hover:bg-blue-700 shadow-md transition-all duration-300 transform hover:scale-105 mx-auto md:mx-0">
         <i data-lucide="heart" class="w-5 h-5 mr-2"></i>
@@ -62,7 +62,7 @@
           <div>
             <h4 class="text-lg font-semibold text-gray-900">Ubicación</h4>
             <p class="text-gray-700 text-sm">
-              {{ item.location }} 
+              {{ item.location }}
             </p>
           </div>
         </div>
@@ -81,44 +81,36 @@
           <div>
             <h4 class="text-lg font-semibold text-gray-900">Horario</h4>
             <p class="text-gray-700 text-sm">
-              {{ item.schedule }} 
-             
+              {{ item.schedule }}
+
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Sección "Explora Más" (Contenido General/Ejemplo) -->
+    <!-- otros posibles intereses -->
+    {% if otros_items %}
     <section class="mb-12">
-      <h3 class="text-3xl font-bold text-gray-900 text-center mb-8">Otros Lugares de Interés Cercanos</h3>
+      <h3 class="text-3xl font-bold text-gray-900 text-center mb-8">
+        Otros Lugares de Interés Cercanos
+      </h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="relative group rounded-lg overflow-hidden shadow-md border border-gray-200 transform hover:scale-[1.02] transition-transform duration-300">
-          <img src="{% static 'img/masaya.webp' %}" alt="Parque Central" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
-     
+        {% for lugar in otros_items %}
+        <a href="{{ lugar.get_absolute_url }}"
+          class="block relative group rounded-lg overflow-hidden shadow-md border border-gray-200 transform hover:scale-[1.02] transition-transform duration-300">
+          <img src="{{ lugar.image.url }}" alt="{{ lugar.title }}"
+            class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
           <div class="p-4 bg-white">
-            <h4 class="text-lg font-semibold text-gray-900 mb-1">Parque Central</h4>
-            <p class="text-gray-700 text-sm">Un lugar vibrante para disfrutar de la vida local.</p>
+            <h4 class="text-lg font-semibold text-gray-900 mb-1">{{ lugar.title }}</h4>
+            <p class="text-gray-700 text-sm">{{ lugar.description|truncatewords:15 }}</p>
           </div>
-        </div>
-        <div class="relative group rounded-lg overflow-hidden shadow-md border border-gray-200 transform hover:scale-[1.02] transition-transform duration-300">
-          <img src="{% static 'img/masaya.webp' %}" alt="Museo Local" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
-         
-          <div class="p-4 bg-white">
-            <h4 class="text-lg font-semibold text-gray-900 mb-1">Museo de la Ciudad</h4>
-            <p class="text-gray-700 text-sm">Descubre la historia y el arte de la región.</p>
-          </div>
-        </div>
-        <div class="relative group rounded-lg overflow-hidden shadow-md border border-gray-200 transform hover:scale-[1.02] transition-transform duration-300">
-          <img src="{% static 'img/masaya.webp' %}" alt="Mirador Panorámico" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
-       
-          <div class="p-4 bg-white">
-            <h4 class="text-lg font-semibold text-gray-900 mb-1">Mirador Panorámico</h4>
-            <p class="text-gray-700 text-sm">Vistas impresionantes del municipio y sus alrededores.</p>
-          </div>
-        </div>
+        </a>
+        {% endfor %}
       </div>
     </section>
+    {% endif %}
+
 
     <!-- Call to Action Final -->
     <section class="text-center bg-blue-600 p-12 rounded-lg shadow-xl mb-12">
