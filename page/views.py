@@ -96,10 +96,6 @@ def content_item_detail(request, municipality_slug, category_slug, item_slug):
         'category': item.page.category,
         'otros_items': otros_items,  # pasamos la lista
     }
-    for item in otros_items:
-        print(f"Otros ítems encontrados: {item.title}")
-        print(otros_items[1].image)        # Ruta o None
-        print(bool(otros_items[1].image))  # True si tiene imagen
 
     return render(request, 'page/content_item_detail.html', context)
 
